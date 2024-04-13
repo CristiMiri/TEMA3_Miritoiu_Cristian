@@ -24,5 +24,27 @@ namespace PS_TEMA3.View
         {
             InitializeComponent();
         }
+
+        public TextBox GetEmailTextBox()
+        {
+            return this.txtEmail;
+        }
+
+        public TextBox GetPasswordTextBox()
+        {
+            return this.txtPassword;
+        }
+
+        // Optionally, you might want to add getters for the buttons if needed for UI testing or other operations
+        public Button GetLoginButton()
+        {
+            return this.LoginButton;
+        }
+
+        public Button GetBackButton()
+        {
+            return this.BackButton;
+        }
     }
+
 }

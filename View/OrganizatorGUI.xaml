@@ -8,7 +8,271 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="OrganizatorGUI">
 
-    <Grid>
-        
-    </Grid>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <!--Button back-->
+            <Button x:Name="BackButton"
+                Content="Back"
+                Margin="0,10,10,10"
+                Grid.Row="0"
+                HorizontalAlignment="Right"
+                Width="100"
+                Command="{Binding Path=BackCommand}"
+                Style="{StaticResource ButtonBaseStyle}" />
+
+            <!-- Manager Prezentari -->
+            <Border Style="{StaticResource DefaultBorderStyle}" Grid.Row="1">
+                <Expander Header="Administrare Prezentari" IsExpanded="False" 
+                      x:Name="PrezentariExpander"
+                      Style="{StaticResource ExpanderBaseStyle}">
+                    <UniformGrid Columns="2" Rows="8" Height="368">
+                        <!-- Hidden labels for internal use -->
+                        <Label Visibility="Collapsed"/>
+                        <TextBlock x:Name="IdPrezentare" Visibility="Collapsed" 
+                               Text="{Binding Path=PrezentareSelectata.Id, Mode=TwoWay}"/>
+
+                        <!-- Title -->
+                        <Label Content="Titlu:" Style="{StaticResource LabelBaseStyle}"/>
+                        <TextBox x:Name="TitluTextBox" Style="{StaticResource InputControlStyle}" 
+                             Text="{Binding Path=PrezentareSelectata.Titlu, Mode=TwoWay}"/>
+
+                        <!-- Author -->
+                        <Label Content="Autor:" Style="{StaticResource LabelBaseStyle}"/>
+                        <TextBox x:Name="AutorTextBox" Style="{StaticResource InputControlStyle}" 
+                             Text="{Binding Path=PrezentareSelectata.Autor, Mode=TwoWay}"/>
+
+                        <!-- Description -->
+                        <Label Content="Descriere:" Style="{StaticResource LabelBaseStyle}"/>
+                        <TextBox x:Name="DescriereTextBox" Style="{StaticResource InputControlStyle}" 
+                             Text="{Binding Path=PrezentareSelectata.Descriere, Mode=TwoWay}"/>
+
+                        <!-- Date -->
+                        <Label Content="Data:" Style="{StaticResource LabelBaseStyle}"/>
+                        <DatePicker x:Name="DataDatePicker" Style="{StaticResource InputControlStyle}" 
+                                SelectedDate="{Binding Path=PrezentareSelectata.Data, Mode=TwoWay}"/>
+
+                        <!-- Time -->
+                        <Label Content="Ora:" Style="{StaticResource LabelBaseStyle}"/>
+                        <TextBox x:Name="OraTextBox" Style="{StaticResource InputControlStyle}" 
+                             Text="{Binding Path=PrezentareSelectata.Ora, Mode=TwoWay}"/>
+
+                        <!-- Section -->
+                        <Label Content="Sectiune:" Style="{StaticResource LabelBaseStyle}"/>
+                        <ComboBox x:Name="ComboBoxSectiuneAdministrare" 
+                              Style="{StaticResource ComboBoxBaseStyle}" 
+                              ItemsSource="{Binding Path=ListaSectiuni}" 
+                              SelectedItem="{Binding Path=PrezentareSelectata.Sectiune, Mode=TwoWay}" 
+                              HorizontalAlignment="Center" Width="200" Margin="-5,5,5,5"/>
+
+                        <!-- Conference ID -->
+                        <Label Content="Id_Conferinta:" Style="{StaticResource LabelBaseStyle}"/>
+                        <TextBox x:Name="IdConferintaTextBox" Style="{StaticResource InputControlStyle}" 
+                             Text="{Binding Path=PrezentareSelectata.Id_conferinta, Mode=TwoWay}"/>
+
+                        <!-- Buttons -->
+                        <Button x:Name="AdaugaPrezentareButton" Content="Adauga Prezentare"  
+                            Command="{Binding Path=CreatePrezentareCommand}"
+                            Style="{StaticResource ButtonBaseStyle}"/>
+                        <Button x:Name="UpdatePrezentareButton" Content="Update Prezentare"
+                            Command="{Binding Path=UpdatePrezentareCommand}"
+                            Style="{StaticResource ButtonBaseStyle}"/>
+                    </UniformGrid>
+
+
+                </Expander>
+            </Border>
+
+            <!-- Manager Participanti -->
+            <Border Style="{StaticResource DefaultBorderStyle}" Grid.Row="2">
+                <Expander Header="Administrare Participanti" IsExpanded="False" 
+                      x:Name="ParticipantiExpander"
+                      Style="{StaticResource ExpanderBaseStyle}">
+                    <UniformGrid Columns="2">
+                        <Label Visibility="Collapsed"/>
+                        <TextBlock x:Name="IdParticipant" Visibility="Collapsed" Text="{Binding Path=ParticipantSelectat.Id, Mode=TwoWay}"/>
+
+                        <Label Content="Nume:" Style="{StaticResource LabelBaseStyle}"/>
+                        <TextBox x:Name="NumeTextBox" Style="{StaticResource InputControlStyle}" Text="{Binding Path=ParticipantSelectat.Nume, Mode=TwoWay}"/>
+
+                        <Label Content="Email:" Style="{StaticResource LabelBaseStyle}"/>
+                        <TextBox x:Name="EmailTextBox" Style="{StaticResource InputControlStyle}" Text="{Binding Path=ParticipantSelectat.Email, Mode=TwoWay}"/>
+
+                        <Label Content="Telefon:" Style="{StaticResource LabelBaseStyle}"/>
+                        <TextBox x:Name="TelefonTextBox" Style="{StaticResource InputControlStyle}" Text="{Binding Path=ParticipantSelectat.Telefon, Mode=TwoWay}"/>
+
+                        <Label Content="Id_Prezentare:" Style="{StaticResource LabelBaseStyle}"/>
+                        <TextBox x:Name="IdPrezentareTextBox" Style="{StaticResource InputControlStyle}" Text="{Binding Path=ParticipantSelectat.IdPrezentare, Mode=TwoWay}"/>
+
+                        <Button x:Name="AdaugaParticipantButton" Content="Adauga Participant" 
+                            Command="{Binding Path=CreateParticipantCommand}"
+                            Style="{StaticResource ButtonBaseStyle}"/>
+                        <Button x:Name="UpdateParticipantButton" Content="Update Participant" 
+                            Command="{Binding Path=UpdateParticipantCommand}"
+                            Style="{StaticResource ButtonBaseStyle}"/>
+                        <Button x:Name="AcceptParticipantButton" Content="Accepta Participant" 
+                            Command="{Binding Path=AcceptParticipantCommand}"
+                            Style="{StaticResource ButtonBaseStyle}"/>
+                        <Button x:Name="RejectParticipantButton" Content="Respinge Participant" 
+                            Command="{Binding Path=RejectParticipantCommand}"
+                            Style="{StaticResource ButtonBaseStyle}"/>
+                    </UniformGrid>
+
+
+                </Expander>
+            </Border>
+
+            <!-- Filter Prezentari-->
+            <Border Grid.Row="3" Style="{StaticResource DefaultBorderStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Filtrare prezentari" Style="{StaticResource LabelBaseStyle}" 
+                       Grid.Column="0" Grid.Row="0"/>
+                    <ComboBox x:Name="ComboBoxPrezentare" 
+                          Grid.Column="1" Grid.Row="0"
+                          Style="{StaticResource ComboBoxBaseStyle}"
+                          SelectedItem="{Binding Path=SectiuneSelectataforPrezentari}"
+                          ItemsSource="{Binding Path=ListaSectiuni}"/>
+                    <Button x:Name="FilterButton" Content="Afisare Prezentari"  
+                        Grid.Column="2" Grid.Row="0"
+                        Style="{StaticResource ButtonBaseStyle}"
+                        Command="{Binding Path=FilterPrezentari}"/>
+                    <Label Content="Salvare prezentari" Style="{StaticResource LabelBaseStyle}" 
+                       Grid.Column="0" Grid.Row="1"/>
+                    <ComboBox x:Name="ComboBoxFormat" 
+                          Grid.Column="1" Grid.Row="1"
+                          Style="{StaticResource ComboBoxBaseStyle}"
+                          SelectedItem="{Binding Path=SelectedFileFormat}"
+                          ItemsSource="{Binding Path=FileFormats}"/>
+                    <Button x:Name="DownloadButton" Content="Descarca Prezentari"  
+                        Grid.Column="2" Grid.Row="1"
+                        Style="{StaticResource ButtonBaseStyle}"
+                        Command="{Binding Path=SaveFile}"/>
+                </Grid>
+            </Border>
+
+            <!-- Filter Participanti-->
+            <Border Grid.Row="6" Style="{StaticResource DefaultBorderStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Filtrare participanti" Style="{StaticResource LabelBaseStyle}" Grid.Column="0"/>
+                    <ComboBox x:Name="ComboBoxSectiune" Grid.Column="1"   
+                          Style="{StaticResource ComboBoxBaseStyle}"
+                          SelectedItem="{Binding Path=SectiuneSelectataforParticipanti}"
+                          ItemsSource="{Binding Path=ListaSectiuni}"/>
+                    <Button x:Name="FilterButtonPrezentari" Content="Afisare Participanti"  Grid.Column="2" 
+                        Style="{StaticResource ButtonBaseStyle}"
+                        Command="{Binding Path=FilterParticipanti}"/>
+                </Grid>
+            </Border>
+
+            <!-- Tabel Prezentari -->
+            <DataGrid x:Name="TabelPrezentari" Grid.Row="5" Style="{StaticResource DataGridBaseStyle}" 
+                  HorizontalAlignment="Stretch" Margin="0,10,0,0"
+                  SelectedItem="{Binding Path=PrezentareSelectata}"
+                  ItemsSource="{Binding Path=ListaPrezentari}">
+                <DataGrid.ColumnHeaderStyle>
+                    <StaticResource ResourceKey="DataGridColumnHeaderStyle"/>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Id}"  />
+                    <DataGridTextColumn Header="Titlu" Binding="{Binding Titlu}"  />
+                    <DataGridTextColumn Header="Autor" Binding="{Binding Autor}"  />
+                    <DataGridTextColumn Header="Descriere" Binding="{Binding Descriere}"  />
+                    <DataGridTextColumn Header="Data" Binding="{Binding Data}"  />
+                    <DataGridTextColumn Header="Ora" Binding="{Binding Ora}"  />
+                    <DataGridTextColumn Header="Sectiune" Binding="{Binding Sectiune}"  />
+                    <DataGridTextColumn Header="ID Conferinta" Binding="{Binding Id_conferinta}"  />
+                    <DataGridTemplateColumn Header="Delete">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Background="#2779a7"
+                                    Command="{Binding DataContext.DeletePrezentareCommand, 
+                                    RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                    CommandParameter="{Binding}">
+                                    <materialDesign:PackIcon Kind="Delete" VerticalAlignment="Center" Foreground="White"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Update">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Background="#2779a7">
+                                    <materialDesign:PackIcon Kind="CursorPointer" VerticalAlignment="Center" Foreground="White"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <!-- Header Prezentari -->
+            <TextBlock Grid.Row="4" Text="Prezentari" FontSize="20" FontWeight="Bold" Margin="0,5,0,5" Style="{StaticResource HeaderTextBlockStyle}" HorizontalAlignment="Left"/>
+
+            <!-- Tabel Participanti -->
+            <DataGrid Grid.Row="8" x:Name="TabelParticipanti" Style="{StaticResource DataGridBaseStyle}" 
+                  HorizontalAlignment="Stretch"
+                  SelectedItem="{Binding Path=ParticipantSelectat}"
+                  ItemsSource="{Binding Path=ListaParticipanti}">
+                <DataGrid.ColumnHeaderStyle>
+                    <StaticResource ResourceKey="DataGridColumnHeaderStyle"/>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Id}"  />
+                    <DataGridTextColumn Header="Nume" Binding="{Binding Nume}"  />
+                    <DataGridTextColumn Header="Email" Binding="{Binding Email}"  />
+                    <DataGridTextColumn Header="Telefon" Binding="{Binding Telefon}"  />
+                    <DataGridTextColumn Header="Prezentare Aleasa" Binding="{Binding IdPrezentare}"  />
+                    <DataGridTemplateColumn Header="Delete">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Background="#2779a7"
+                                    Command="{Binding DataContext.DeleteParticipantCommand, 
+                                    RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                    CommandParameter="{Binding}">
+                                    <materialDesign:PackIcon Kind="Delete" VerticalAlignment="Center" Foreground="White"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Update">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Background="#2779a7">
+                                    <materialDesign:PackIcon Kind="CursorPointer" VerticalAlignment="Center" Foreground="White"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <!-- Header Participanti -->
+            <TextBlock Grid.Row="7" Text="Participanti" FontSize="20" FontWeight="Bold" Margin="0,10,0,0" Style="{StaticResource HeaderTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+        </Grid>
+    </ScrollViewer>
 </Page>

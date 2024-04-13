@@ -24,5 +24,16 @@ namespace PS_TEMA3.View
         {
             InitializeComponent();
         }
+
+        public Button GetBackButton()
+        {
+            return this.BackButton;
+        }
+
+        public DataGrid GetTabelConferinte()
+        {
+            return this.TabelConferinte;
+        }
     }
+
 }

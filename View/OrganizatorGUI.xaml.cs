@@ -24,5 +24,55 @@ namespace PS_TEMA3.View
         {
             InitializeComponent();
         }
+
+        public TextBox GetTitluTextBox()
+        {
+            return this.TitluTextBox;
+        }
+
+        public TextBox GetAutorTextBox()
+        {
+            return this.AutorTextBox;
+        }
+
+        public TextBox GetDescriereTextBox()
+        {
+            return this.DescriereTextBox;
+        }
+
+        public DatePicker GetDataDatePicker()
+        {
+            return this.DataDatePicker;
+        }
+
+        public TextBox GetOraTextBox()
+        {
+            return this.OraTextBox;
+        }
+
+        public ComboBox GetComboBoxSectiuneAdministrare()
+        {
+            return this.ComboBoxSectiuneAdministrare;
+        }
+
+        public TextBox GetIdConferintaTextBox()
+        {
+            return this.IdConferintaTextBox;
+        }
+
+        // Similarly, add getters for other controls, including buttons and DataGrids
+
+        public DataGrid GetTabelPrezentari()
+        {
+            return this.TabelPrezentari;
+        }
+
+        public DataGrid GetTabelParticipanti()
+        {
+            return this.TabelParticipanti;
+        }
+
+        // Getters for buttons if needed
     }
+
 }

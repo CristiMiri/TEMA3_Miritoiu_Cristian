@@ -7,8 +7,28 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="LoginGUI">
-
     <Grid>
-        
+        <UniformGrid Rows="4" Columns="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Label Content="Email:" Width="100" VerticalAlignment="Center"
+                       Style="{StaticResource LabelBaseStyle}"/>
+                <TextBox Name="txtEmail" Width="200" VerticalAlignment="Center"
+                         Style="{StaticResource InputControlStyle}" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Label Content="Password:" Width="100" VerticalAlignment="Center"
+                       Style="{StaticResource LabelBaseStyle}"/>
+                <TextBox Name="txtPassword" Width="200" VerticalAlignment="Center"
+                         Style="{StaticResource InputControlStyle}" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,0">
+                <Button Content="Login"  Width="100" x:Name="LoginButton"
+                        HorizontalAlignment="Center" Background="Green"/>
+                <Button Content="Back" Width="100" Margin="10,0,0,0" x:Name="BackButton"
+                        HorizontalAlignment="Center" Background="Blue"/>
+            </StackPanel>
+        </UniformGrid>
     </Grid>
 </Page>

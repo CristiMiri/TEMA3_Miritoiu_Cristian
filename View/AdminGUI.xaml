@@ -3,12 +3,138 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:PS_TEMA3.View"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AdminGUI">
 
-    <Grid>
-        
-    </Grid>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <Grid HorizontalAlignment="Center">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Form -->
+            <Expander Header="Administrare Utilizatori" IsExpanded="True" Margin="10" Grid.Row="0"
+                  x:Name="Administrare" Style="{StaticResource ExpanderBaseStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- ID - Hidden -->
+                    <TextBox x:Name="IdTextBox" Margin="0,5,10,5" Grid.Column="1" Grid.Row="0" Visibility="Hidden" Style="{StaticResource InputControlStyle}"                    />
+
+                    <!-- Name -->
+                    <Label Content="Name:" Grid.Column="0" Grid.Row="1" Style="{StaticResource LabelBaseStyle}"/>
+                    <TextBox x:Name="NumeTextBox" Margin="0,5,10,5" Grid.Column="1" Grid.Row="1" Style="{StaticResource InputControlStyle}"
+                         />
+
+                    <!-- Email -->
+                    <Label Content="Email:" Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelBaseStyle}"/>
+                    <TextBox x:Name="EmailTextBox" Margin="0,5,10,5" Grid.Column="1" Grid.Row="2" Style="{StaticResource InputControlStyle}"
+                        />
+
+                    <!-- Password -->
+                    <Label Content="Password:" Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelBaseStyle}"/>
+                    <TextBox x:Name="ParolaTextBox" Margin="0,5,10,5" Grid.Column="1" Grid.Row="3" Style="{StaticResource InputControlStyle}"
+                         />
+
+                    <!-- User Type -->
+                    <Label Content="User Type:" Grid.Column="0" Grid.Row="4" Style="{StaticResource LabelBaseStyle}"/>
+                    <ComboBox x:Name="UserTypeComboBox" Margin="0,5,10,5" Grid.Column="1" Grid.Row="4" Style="{StaticResource InputControlStyle}"
+                           
+                            />
+
+
+                    <!-- Telephone -->
+                    <Label Content="Telephone:" Grid.Column="0" Grid.Row="5" Style="{StaticResource LabelBaseStyle}"/>
+                    <TextBox x:Name="TelefonTextBox" Margin="0,5,10,5" Grid.Column="1" Grid.Row="5" Style="{StaticResource InputControlStyle}"
+                         />
+
+                    <!-- Buttons -->
+                    <Button x:Name="CreateUserButton" Content="Create User"  Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Width="100" Style="{StaticResource ButtonBaseStyle}"
+                        HorizontalAlignment="Stretch"
+                        
+                        />
+                    <Button x:Name="UpdateUserButton" Content="Update User"  Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2" Width="100" Style="{StaticResource ButtonBaseStyle}"
+                        HorizontalAlignment="Stretch"
+                        />
+
+                    <Button x:Name="BackButton" Content="Back" Margin="0,0,50,10" Grid.Column="1" HorizontalAlignment="Right" Width="100" 
+                       
+                        Style="{StaticResource ButtonBaseStyle}"/>
+                </Grid>
+
+
+
+            </Expander>
+
+
+
+            <!-- DataGrid -->
+            <DataGrid Grid.Row="2" x:Name="TabelUtilizatori" Style="{StaticResource DataGridBaseStyle}">
+                <DataGrid.ColumnHeaderStyle>
+                    <StaticResource ResourceKey="DataGridColumnHeaderStyle"/>
+                </DataGrid.ColumnHeaderStyle>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*" />
+                    <DataGridTextColumn Header="Nume" Binding="{Binding Nume}" Width="*"/>
+                    <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
+                    <DataGridTextColumn Header="UserType" Binding="{Binding UserType}" Width="*"/>
+                    <DataGridTextColumn Header="Telefon" Binding="{Binding Telefon}" Width="*"/>
+                    <DataGridTextColumn Header="Password" Binding="{Binding Parola}" Width="*"/>
+                    <DataGridTemplateColumn Header="Delete">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Background="#2779a7" 
+                                    Command="{Binding DataContext.DeleteUtilizator, 
+                                    RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                    CommandParameter="{Binding}">
+                                    <materialDesign:PackIcon Kind="Delete" VerticalAlignment="Center" Foreground="White"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Update" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Background="#2779a7" 
+                                    Command="{Binding DataContext.SelectUtilizator, 
+                                    RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                    CommandParameter="{Binding}">
+                                    <materialDesign:PackIcon Kind="CursorPointer" VerticalAlignment="Center" Foreground="White"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <TextBlock Grid.Row="1" 
+        Text="Utilizatori" 
+        FontSize="20" 
+        FontWeight="Bold" 
+        Margin="0,15,0,0" 
+        Style="{StaticResource HeaderTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        </Grid>
+    </ScrollViewer>
 </Page>

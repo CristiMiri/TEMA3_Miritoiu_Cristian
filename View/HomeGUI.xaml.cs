@@ -24,5 +24,36 @@ namespace PS_TEMA3.View
         {
             InitializeComponent();
         }
+
+        public TextBox GetTxtNume()
+        {
+            return this.txtNume;
+        }
+
+        public TextBox GetTxtEmail()
+        {
+            return this.txtEmail;
+        }
+
+        public TextBox GetTxtTelefon()
+        {
+            return this.txtTelefon;
+        }
+
+        public ComboBox GetCmbPrezentare()
+        {
+            return this.cmbPrezentare;
+        }
+
+        public ComboBox GetCmbSectiune()
+        {
+            return this.cmbSectiune;
+        }
+
+        public DataGrid GetTabelConferinte()
+        {
+            return this.TabelConferinte;
+        }
     }
+
 }
