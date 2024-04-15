@@ -58,6 +58,10 @@ namespace PS_TEMA3.Model
         {            
             this.Email = email;
             this.Parola = password;
+            this.Id = 0;
+            this.Nume = "";
+            this.UserType = UserType.PARTICIPANT;
+            this.Telefon = "";
         }
 
 

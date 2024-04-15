@@ -41,7 +41,10 @@ namespace PS_TEMA3.Model.Repository
             conferinta.Id = Convert.ToInt32(row["id"]);
             conferinta.Titlu = row["titlu"].ToString();
             conferinta.Locatie = row["locatie"].ToString();
-            conferinta.Data = row["data"].ToString();
+            //create a variable to store the date and format it as yyyy-MM-dd
+            DateTime date = Convert.ToDateTime(row["data"]);          
+            conferinta.Data = date.ToString("yyyy-MM-dd");
+            
             return conferinta;
         }
 

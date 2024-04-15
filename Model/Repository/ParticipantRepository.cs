@@ -30,7 +30,7 @@ namespace PS_TEMA3.Model.Repository
                 Telefon = row["telefon"].ToString(),
                 CNP = row["cnp"].ToString(),
                 PdfFilePath = row["pdf_file_path"].ToString(),
-                IdPrezentare = Convert.ToInt32(row["id_prezentare"])
+                //IdPrezentare = Convert.ToInt32(row["id_prezentare"])
             };
         }
         public DataTable ParticipantiTable()

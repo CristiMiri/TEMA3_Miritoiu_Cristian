@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:PS_TEMA3.View"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      Background="{DynamicResource AppBackgroundBrush}"
       Title="UtilizatorGUI">
 
     <Grid>
@@ -44,18 +45,18 @@
             </DataGrid.ColumnHeaderStyle>
             <DataGrid.Columns>
                 <!-- Columns without Binding -->
-                <DataGridTextColumn Header="Prezentare ID" />
-                <DataGridTextColumn Header="Prezentare Titlu" />
-                <DataGridTextColumn Header="Conferinta ID" />
-                <DataGridTextColumn Header="Conferinta Titlu" />
-                <DataGridTextColumn Header="Conferinta Locatie" />
-                <DataGridTextColumn Header="Conferinta Data" />
-                <DataGridTextColumn Header="Prezentare Autor" />
-                <DataGridTextColumn Header="Prezentare Descriere" />
-                <DataGridTextColumn Header="Prezentare Data" />
-                <DataGridTextColumn Header="Prezentare Ora" />
-                <DataGridTextColumn Header="Prezentare Sectiune" />
-                <DataGridTextColumn Header="Prezentare Conferinta ID" />
+                <DataGridTextColumn Header="Prezentare ID" Binding="{Binding PrezentareId}"  />
+                <!--<DataGridTextColumn Header="Conferinta ID" Binding="{Binding ConferintaId}"  />-->
+                <DataGridTextColumn Header="Conferinta Titlu" Binding="{Binding ConferintaTitlu}"  />
+                <DataGridTextColumn Header="Conferinta Locatie" Binding="{Binding ConferintaLocatie}"  />
+                <DataGridTextColumn Header="Conferinta Data" Binding="{Binding ConferintaData}"  />
+                <DataGridTextColumn Header="Prezentare Titlu" Binding="{Binding PrezentareTitlu}"  />
+                <DataGridTextColumn Header="Prezentare Autor" Binding="{Binding PrezentareAutor}"  />
+                <DataGridTextColumn Header="Prezentare Descriere" Binding="{Binding PrezentareDescriere}"  />
+                <DataGridTextColumn Header="Prezentare Data" Binding="{Binding PrezentareData}"  />
+                <DataGridTextColumn Header="Prezentare Ora" Binding="{Binding PrezentareOra}"  />
+                <DataGridTextColumn Header="Prezentare Sectiune" Binding="{Binding PrezentareSectiune}"  />
+                <!--<DataGridTextColumn Header="Prezentare Conferinta ID" Binding="{Binding PrezentareConferintaId}"  />-->
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

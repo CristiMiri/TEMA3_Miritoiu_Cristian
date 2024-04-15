@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PS_TEMA3.Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,11 +24,13 @@ namespace PS_TEMA3.View
         public UtilizatorGUI()
         {
             InitializeComponent();
+            UtilizatorController utilizatorController = new UtilizatorController(this);
         }
 
         public Button GetBackButton()
         {
             return this.BackButton;
+            //TODO: Implement Method
         }
 
         public DataGrid GetTabelConferinte()

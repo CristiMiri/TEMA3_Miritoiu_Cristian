@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:PS_TEMA3.View"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      Background="{DynamicResource AppBackgroundBrush}"    
       Title="LoginGUI">
     <Grid>
         <UniformGrid Rows="4" Columns="1" HorizontalAlignment="Center" VerticalAlignment="Center">

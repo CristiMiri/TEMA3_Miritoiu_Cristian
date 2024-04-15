@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:PS_TEMA3.View"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      Background="{DynamicResource AppBackgroundBrush}"    
       Title="HomeGUI">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto"  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
@@ -13,10 +14,22 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+            <!-- First Row: Header -->
+            <StackPanel Orientation="Horizontal" Grid.Row="0" x:Name="Header" 
+                    Background="{DynamicResource AppBackgroundBrush}" 
+                    >
+                <!-- Banner -->
+                <TextBlock Text="Conference Application" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="10" Style="{DynamicResource HeaderTextBlockStyle}"/>
 
-            <Border Style="{StaticResource DefaultBorderStyle}" Grid.Row="0">
+                <Button x:Name="loginButton" Content="Login" Margin="450,10,10,10" HorizontalAlignment="Right" 
+                    Command="{Binding Path=LoginCommand}"
+                    CommandParameter="Login"
+                    Style="{DynamicResource ButtonBaseStyle}"/>
+            </StackPanel>
+            <Border Style="{StaticResource DefaultBorderStyle}" Grid.Row="1">
                 <Expander Header="Inscriere" IsExpanded="False" Style="{StaticResource ExpanderBaseStyle}" >
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -45,22 +58,32 @@
                 </Expander>
             </Border>
 
-            <Border Style="{StaticResource DefaultBorderStyle}" Grid.Row="1">
+            <Border Style="{StaticResource DefaultBorderStyle}" Grid.Row="2">
                 <UniformGrid Columns="3" Rows="1" >
                     <Label  Style="{StaticResource LabelBaseStyle}" Content="Cautare dupa Sectiune" HorizontalAlignment="Left" Width="Auto"/>
                     <ComboBox Name="cmbSectiune" Style="{StaticResource ComboBoxBaseStyle}"/>
-                    <Button Content="Afisare" HorizontalAlignment="Center" Style="{DynamicResource ButtonBaseStyle}"/>
+                    <Button Content="Afisare" HorizontalAlignment="Center" 
+                            x:Name="FilterPrezenariButton"
+                            Style="{DynamicResource ButtonBaseStyle}"/>
                 </UniformGrid>
             </Border>
 
-            <DataGrid x:Name="TabelConferinte" AutoGenerateColumns="False" CanUserAddRows="False"  Grid.Row="2" Style="{DynamicResource DataGridBaseStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}">
+            <DataGrid x:Name="TabelConferinte" AutoGenerateColumns="False" CanUserAddRows="False"  Grid.Row="3" Style="{DynamicResource DataGridBaseStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Binding="{Binding Path=Id}" />
-                    <DataGridTextColumn Header="Conference" Binding="{Binding Path=Id_conferinta}" />
+                    <!--<DataGridTextColumn Header="Conference" Binding="{Binding Path=IdConferinta}" />-->
                     <DataGridTextColumn Header="Titlu" Binding="{Binding Path=Titlu}" />
                     <DataGridTextColumn Header="Descriere" Binding="{Binding Path=Descriere}" />
                     <DataGridTextColumn Header="Data" Binding="{Binding Path=Data}" />
                     <DataGridTextColumn Header="Sectiune" Binding="{Binding Path=Sectiune}" />
+                    <DataGridTemplateColumn Header="Image">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Path=ImageUrl}" Width="50" Height="50"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                
                 </DataGrid.Columns>
             </DataGrid>
 

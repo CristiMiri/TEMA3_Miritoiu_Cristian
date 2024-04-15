@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PS_TEMA3"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
 
-    </Grid>
+        <Frame Content="Main" Grid.Row="1" Name="mainFrame" Margin="0,2,0,-2"/>
+
 </Window>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PS_TEMA3.Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace PS_TEMA3.View
         public AdminGUI()
         {
             InitializeComponent();
+            AdminController adminController = new AdminController(this);
         }
 
         // Getter for the ID TextBox
@@ -83,7 +85,17 @@ namespace PS_TEMA3.View
         public Button GetBackButton()
         {
             return this.BackButton;
+            //TODO: Implement the BackButton
         }
+        public Button getDeleteUserButton()
+        {
+            return this.DeleteUserButton;
+        }
+
+        public void ShowMessage(String message)
+        {
+            MessageBox.Show(message);
+        }        
     }
 
 }

@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using PS_TEMA3.View;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +20,8 @@ namespace PS_TEMA3
         public MainWindow()
         {
             InitializeComponent();
+
+            mainFrame.Content = new HomeGUI();
         }
     }
 }

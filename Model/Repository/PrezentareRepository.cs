@@ -19,13 +19,14 @@ namespace PS_TEMA3.Model.Repository
 
         private Prezentare RowToPrezentare(DataRow row)
         {
+            DateTime date = Convert.ToDateTime(row["data"]);               
             return new Prezentare
             {
                 Id = Convert.ToInt32(row["id"]),
                 Titlu = row["titlu"].ToString(),
                 IdAutor = Convert.ToInt32(row["id_autor"]),
-                Descriere = row["descriere"].ToString(),
-                Data = Convert.ToDateTime(row["data"]),
+                Descriere = row["descriere"].ToString(),        
+                Data = DateOnly.FromDateTime(date),
                 Ora = TimeSpan.Parse(row["ora"].ToString()),
                 Sectiune = (Sectiune)Enum.Parse(typeof(Sectiune), row["sectiune"].ToString()),
                 IdConferinta = Convert.ToInt32(row["id_conferinta"])

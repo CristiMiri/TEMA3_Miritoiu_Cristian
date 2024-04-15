@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PS_TEMA3.Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace PS_TEMA3.View
         public OrganizatorGUI()
         {
             InitializeComponent();
+            OrganizatorController organizatorController = new OrganizatorController(this);
         }
 
         public TextBox GetTitluTextBox()
@@ -73,6 +75,11 @@ namespace PS_TEMA3.View
         }
 
         // Getters for buttons if needed
+
+        public Button getBackButton()
+        {
+            return this.BackButton;
+        }
     }
 
 }

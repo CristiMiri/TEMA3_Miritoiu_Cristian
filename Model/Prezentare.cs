@@ -22,7 +22,7 @@ namespace PS_TEMA3.Model
         public string Titlu { get; set; }
         public int IdAutor { get; set; } 
         public string Descriere { get; set; }
-        public DateTime Data { get; set; } 
+        public DateOnly Data { get; set; }
         public TimeSpan Ora { get; set; } 
         public Sectiune Sectiune { get; set; }
         public int IdConferinta { get; set; } 
@@ -30,10 +30,18 @@ namespace PS_TEMA3.Model
         // Default constructor
         public Prezentare()
         {
+            Id = 0;
+            Titlu = "";
+            IdAutor = 0;
+            Descriere = "";
+            Data = DateOnly.FromDateTime(DateTime.Now);
+            Ora = DateTime.Now.TimeOfDay;
+            Sectiune = Sectiune.TOATE;
+            IdConferinta = 0;
         }
 
         // Parameterized constructor 
-        public Prezentare(int id, string titlu, int idAutor, string descriere, DateTime data, TimeSpan ora, Sectiune sectiune, int idConferinta)
+        public Prezentare(int id, string titlu, int idAutor, string descriere, DateOnly data, TimeSpan ora, Sectiune sectiune, int idConferinta)
         {
             Id = id;
             Titlu = titlu;

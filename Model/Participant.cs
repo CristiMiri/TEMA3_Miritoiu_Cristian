@@ -31,6 +31,13 @@ namespace PS_TEMA3.Model
         // Default constructor
         public Participant()
         {
+            Id = 0;
+            Nume = "";
+            Email = "";
+            Telefon = "";
+            CNP = "";
+            PdfFilePath = "";
+            IdPrezentare = 0;
         }
 
 

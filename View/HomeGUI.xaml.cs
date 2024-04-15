@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PS_TEMA3.Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,8 @@ namespace PS_TEMA3.View
         public HomeGUI()
         {
             InitializeComponent();
+            HomeController homeController = new HomeController(this);
+
         }
 
         public TextBox GetTxtNume()
@@ -54,6 +57,17 @@ namespace PS_TEMA3.View
         {
             return this.TabelConferinte;
         }
+
+        public Button getFilterPrezenariButton()
+        {
+            return this.FilterPrezenariButton;
+        }
+
+        //Buttons
+        public Button getLoginButton()
+        {
+            return this.loginButton;
+        }        
     }
 
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PS_TEMA3.Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace PS_TEMA3.View
         public LoginGUI()
         {
             InitializeComponent();
+            LoginController loginController = new LoginController(this);
         }
 
         public TextBox GetEmailTextBox()
@@ -44,6 +46,11 @@ namespace PS_TEMA3.View
         public Button GetBackButton()
         {
             return this.BackButton;
+        }
+
+        public void ShowError(string message)
+        {
+            MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 

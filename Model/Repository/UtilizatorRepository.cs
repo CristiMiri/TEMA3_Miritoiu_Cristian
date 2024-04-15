@@ -21,6 +21,7 @@ namespace PS_TEMA3.Model.Repository
         public UtilizatorRepository()
         {
             repository = new Repository();
+            utilizatoriTable = new DataTable();
         }
 
         public Repository Repository
