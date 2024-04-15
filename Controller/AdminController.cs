@@ -21,33 +21,35 @@ namespace PS_TEMA3.Controller
             utilizatorRepository = new UtilizatorRepository();
             this.adminGUI = adminGUI;
             adminGUI.GetCreateUserButton().Click += new RoutedEventHandler(CreateUtilizator);
-            adminGUI.GetUpdateUserButton().Click += new RoutedEventHandler(UpdateUtilizator); 
+            adminGUI.GetUpdateUserButton().Click += new RoutedEventHandler(UpdateUtilizator);
             adminGUI.getDeleteUserButton().Click += new RoutedEventHandler(DeleteUtilizator);
             adminGUI.GetBackButton().Click += new RoutedEventHandler(Back);
+            adminGUI.getFilterButtonUtilizatori().Click += new RoutedEventHandler(FilterUtilizatori);
             adminGUI.GetUsersDataGrid().SelectionChanged += new SelectionChangedEventHandler(SelectUtilizator);
+            PopulateComboBox();
             adminGUI.GetUserTypeComboBox().ItemsSource = Enum.GetValues(typeof(UserType));
             adminGUI.GetUserTypeComboBox().SelectedIndex = 0;
-            UtilizatoriTable();            
+            UtilizatoriTable();
         }
 
         private Utilizator ValidUtilizatorData()
-        {           
+        {
             int id;
             if (!int.TryParse(adminGUI.GetIdTextBox().Text, out id))
             {
-                id = 0;               
+                id = 0;
             }
             String nume = adminGUI.GetNameTextBox().Text;
             String email = adminGUI.GetEmailTextBox().Text;
             String parola = adminGUI.GetPasswordTextBox().Text;
             UserType userType = (UserType)adminGUI.GetUserTypeComboBox().SelectedIndex;
             String telefon = adminGUI.GetTelephoneTextBox().Text;
-            if(String.IsNullOrEmpty(nume) || String.IsNullOrEmpty(email) || String.IsNullOrEmpty(parola) || String.IsNullOrEmpty(telefon))
+            if (String.IsNullOrEmpty(nume) || String.IsNullOrEmpty(email) || String.IsNullOrEmpty(parola) || String.IsNullOrEmpty(telefon))
             {
                 adminGUI.ShowMessage("Toate campurile sunt obligatorii!");
                 return null;
             }
-            return new Utilizator(id,nume, email, parola, userType, telefon);
+            return new Utilizator(id, nume, email, parola, userType, telefon);
         }
         private void ClearFields()
         {
@@ -61,7 +63,7 @@ namespace PS_TEMA3.Controller
 
         private void CreateUtilizator(object sender, EventArgs e)
         {
-           Utilizator createUser = ValidUtilizatorData();
+            Utilizator createUser = ValidUtilizatorData();
             if (createUser != null)
             {
                 utilizatorRepository.addUtilizator(createUser);
@@ -115,9 +117,31 @@ namespace PS_TEMA3.Controller
             adminGUI.GetUsersDataGrid().ItemsSource = utilizatori;
         }
 
+        private void FilterUtilizatori(object sender, EventArgs e)
+        {
+            int userType = adminGUI.getFilterBox().SelectedIndex;
+
+            if (userType == 3)
+            {
+                UtilizatoriTable();
+                return;
+            }
+            List<Utilizator> utilizatori = utilizatorRepository.GetUtilizatorsbyUserType((UserType)userType);
+            adminGUI.GetUsersDataGrid().ItemsSource = utilizatori;
+
+        }
+
         private void Back(object sender, EventArgs e)
         {
             Application.Current.MainWindow.Content = new HomeGUI();
+        }
+
+        void PopulateComboBox()
+        {
+            var items = Enum.GetValues(typeof(UserType)).Cast<UserType>().Select(x => x.ToString()).ToList();
+            items.Insert(3, "TOATE");
+            adminGUI.getFilterBox().ItemsSource = items;
+            adminGUI.getFilterBox().SelectedIndex = 0;
         }
     }
 }

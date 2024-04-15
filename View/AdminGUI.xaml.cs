@@ -81,15 +81,25 @@ namespace PS_TEMA3.View
             return this.UpdateUserButton;
         }
 
+        public ComboBox getFilterBox()
+        {
+            return this.ComboBoxUserType;
+        }
+
         //Getter for the Route Back Button
         public Button GetBackButton()
         {
             return this.BackButton;
-            //TODO: Implement the BackButton
+
         }
         public Button getDeleteUserButton()
         {
             return this.DeleteUserButton;
+        }
+
+        public Button getFilterButtonUtilizatori()
+        {
+            return this.FilterButtonUtilizatori;
         }
 
         public void ShowMessage(String message)

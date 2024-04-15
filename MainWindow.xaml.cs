@@ -21,7 +21,7 @@ namespace PS_TEMA3
         {
             InitializeComponent();
 
-            mainFrame.Content = new HomeGUI();
+            mainFrame.Content = new OrganizatorGUI();
         }
     }
 }

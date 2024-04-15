@@ -92,7 +92,7 @@ namespace PS_TEMA3.Model.Repository
 
         public List<Participant> GetParticipantibyPrezentare(Prezentare prezentare)
         {
-            string query = "SELECT * FROM participanti WHERE id_prezentare = " + prezentare.Id;
+            string query = "SELECT * FROM participanti WHERE id = " + prezentare.IdAutor;
             DataTable participantiTable = repository.ExecuteQuery(query);
             if (participantiTable != null || participantiTable.Rows.Count > 0)
             {

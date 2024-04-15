@@ -94,7 +94,22 @@
 
             </Expander>
 
-
+            <Border Grid.Row="1" Style="{StaticResource DefaultBorderStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Filtrare Utilizatori" Style="{StaticResource LabelBaseStyle}" Grid.Column="0"/>
+                    <ComboBox x:Name="ComboBoxUserType" Grid.Column="1"   
+                          Style="{StaticResource ComboBoxBaseStyle}"
+                          />
+                    <Button x:Name="FilterButtonUtilizatori" Content="Afisare Utilizatori"  Grid.Column="2" 
+                            Style="{StaticResource ButtonBaseStyle}" Width="150"
+                            />
+                </Grid>
+            </Border>
 
             <!-- DataGrid -->
             <DataGrid Grid.Row="2" x:Name="TabelUtilizatori" Style="{StaticResource DataGridBaseStyle}">
@@ -110,12 +125,13 @@
                     <DataGridTextColumn Header="Password" Binding="{Binding Parola}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <TextBlock Grid.Row="1" 
+            
+        <!--<TextBlock Grid.Row="1" 
         Text="Utilizatori" 
         FontSize="20" 
         FontWeight="Bold" 
         Margin="0,15,0,0" 
-        Style="{StaticResource HeaderTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        Style="{StaticResource HeaderTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Top"/>-->
         </Grid>
     </ScrollViewer>
 </Page>

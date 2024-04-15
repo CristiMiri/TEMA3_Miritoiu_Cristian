@@ -155,7 +155,7 @@ namespace PS_TEMA3.Model.Repository
             List<Utilizator> utilizatori = new List<Utilizator>();
             foreach (DataRow row in utilizatoriTable.Rows)
             {
-                if ((UserType)Enum.Parse(typeof(UserType), row["usertype"].ToString()) == userType)
+                if ((UserType)Enum.Parse(typeof(UserType), row["user_type"].ToString()) == userType)
                 {
                     utilizatori.Add(rowToUtilizator(row));
                 }

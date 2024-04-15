@@ -74,11 +74,40 @@ namespace PS_TEMA3.View
             return this.TabelParticipanti;
         }
 
+        public ComboBox getComboBoxFilterParticipanti()
+        {
+            return this.ComboBoxFilterParticipanti;
+        }
         // Getters for buttons if needed
+
+        public ComboBox getComboBoxFiltrarePrezentare()
+        {
+            return this.ComboBoxFiltrarePrezentare;
+        }
+
+        public ComboBox getComboBoxFormat()
+        {
+            return this.ComboBoxFormat;
+        }
 
         public Button getBackButton()
         {
             return this.BackButton;
+        }
+
+        public Button getFilterButtonParticipanti()
+        {
+            return this.FilterButtonParticipanti;
+        }
+
+        public Button getFilterPrezentariButton()
+        {
+            return this.FilterPrezentariButton;
+        }
+
+        public Button getDownloadButton()
+        {
+            return this.DownloadButton;
         }
     }
 
