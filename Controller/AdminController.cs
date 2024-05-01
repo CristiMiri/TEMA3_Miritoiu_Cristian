@@ -66,8 +66,10 @@ namespace PS_TEMA3.Controller
             Utilizator createUser = ValidUtilizatorData();
             if (createUser != null)
             {
-                utilizatorRepository.addUtilizator(createUser);
-                adminGUI.ShowMessage("Utilizatorul a fost adaugat cu succes!");
+                if(utilizatorRepository.CreateUtilizator(createUser))
+                    adminGUI.ShowMessage("Utilizatorul a fost adaugat cu succes!");
+                else
+                    adminGUI.ShowMessage("Nu sa putut adauga utilizatorul!");
             }
             this.UtilizatoriTable();
             this.ClearFields();
@@ -78,7 +80,7 @@ namespace PS_TEMA3.Controller
             Utilizator updateUser = ValidUtilizatorData();
             if (updateUser != null)
             {
-                utilizatorRepository.updateUtilizator(updateUser);
+                utilizatorRepository.UpdateUtilizator(updateUser);
                 adminGUI.ShowMessage("Utilizatorul a fost actualizat cu succes!");
             }
             this.UtilizatoriTable();
@@ -90,7 +92,7 @@ namespace PS_TEMA3.Controller
             Utilizator deleteUser = ValidUtilizatorData();
             if (deleteUser != null)
             {
-                utilizatorRepository.deleteUtilizator(deleteUser.Id);
+                utilizatorRepository.DeleteUtilizator(deleteUser.Id);
                 adminGUI.ShowMessage("Utilizatorul a fost sters cu succes!");
             }
             this.UtilizatoriTable();
@@ -113,7 +115,7 @@ namespace PS_TEMA3.Controller
 
         private void UtilizatoriTable()
         {
-            List<Utilizator> utilizatori = utilizatorRepository.GetUtilizatori();
+            List<Utilizator> utilizatori = utilizatorRepository.ReadUtilizatori();
             adminGUI.GetUsersDataGrid().ItemsSource = utilizatori;
         }
 
@@ -126,7 +128,7 @@ namespace PS_TEMA3.Controller
                 UtilizatoriTable();
                 return;
             }
-            List<Utilizator> utilizatori = utilizatorRepository.GetUtilizatorsbyUserType((UserType)userType);
+            List<Utilizator> utilizatori = utilizatorRepository.ReadUtilizatoribyUserType((UserType)userType);
             adminGUI.GetUsersDataGrid().ItemsSource = utilizatori;
 
         }

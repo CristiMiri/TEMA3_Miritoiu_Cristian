@@ -10,37 +10,15 @@ namespace PS_TEMA3.Model.Repository
     public class UtilizatorRepository
 
     {
-        private Repository repository;
-        private DataTable utilizatoriTable;
-        /*User =    private int id;
-                    private String nume;
-                    private String email;
-                    private String parola;
-                    private UserType userType;
-                    private String telefon; */
+        private Repository repository;        
+
         public UtilizatorRepository()
         {
-            repository = new Repository();
-            utilizatoriTable = new DataTable();
+            repository = new Repository();         
         }
-
-        public Repository Repository
-        {
-            get { return repository; }
-            set { repository = value; }
-        }
-
-        public void UtilizatorTable()
-        {
-            string query = "SELECT * FROM utilizatori";
-            utilizatoriTable = repository.ExecuteQuery(query);
-            if (utilizatoriTable != null || utilizatoriTable.Rows.Count != 0)
-            {
-                this.utilizatoriTable = utilizatoriTable;
-            }
-        }
-
-        public Utilizator rowToUtilizator(DataRow row)
+        
+        //Utility methods
+        private static Utilizator RowToUtilizator(DataRow row)
         {
             Utilizator utilizator = new Utilizator();
             utilizator.Id = Convert.ToInt32(row["id"]);
@@ -52,147 +30,110 @@ namespace PS_TEMA3.Model.Repository
             return utilizator;
         }
 
-
-        public DataTable UtilizatoriTable
+        //CRUD methods
+        public bool CreateUtilizator(Utilizator utilizator)
         {
-            get { return utilizatoriTable; }
-            set { utilizatoriTable = value; }
-        }
-
-        //CRUD
-        public bool addUtilizator(Utilizator utilizator)
-        {
-            Utilizator utilizatorExist = GetUtilizatorbyEmail(utilizator.Email);
-            if (utilizatorExist != null)
+            // Perform an SQL query to check if the user exists (avoids pulling the object)
+            string existQuery = $"SELECT * FROM utilizator WHERE Email = '{utilizator.Email}'";
+            DataTable dataTable = repository.ExecuteQuery(existQuery);
+            if(dataTable.Rows.Count > 0)
             {
-                return false;
-            }
-            string nonQuery = "INSERT INTO utilizatori (Nume, Email, Parola, User_Type, Telefon) VALUES ('" +
-                utilizator.Nume + "', '" +
-                utilizator.Email + "', '" +
-                utilizator.Parola + "', '" +
-                utilizator.UserType + "', '" +
-                utilizator.Telefon + "')";
-
+                return false; // User already exists
+            }            
+            // Constructing SQL statement 
+            string nonQuery = $"INSERT INTO utilizator (Nume, Email, Parola, User_Type, Telefon) VALUES ('" +
+                              $"{utilizator.Nume}', '" +
+                              $"{utilizator.Email}', '" +
+                              $"{utilizator.Parola}', '" +
+                              $"{utilizator.UserType}', '" +
+                              $"{utilizator.Telefon}')";
             return repository.ExecuteNonQuery(nonQuery);
+        }
+
+        public Utilizator? ReadUtilizatorById(int id)
+        {
+            // Constructing SQL statement
+            string query = $"SELECT * FROM utilizator WHERE id = {id}";
+            DataTable utilizatoriTable = repository.ExecuteQuery(query);
+            if (utilizatoriTable.Rows.Count == 0)
+            {
+                return null; // No utilizator with that id
+            }
+            // Convert DataTable to Utilizator
+            return RowToUtilizator(utilizatoriTable.Rows[0]);
 
         }
 
-        public List<Utilizator> GetUtilizatori()
+        public List<Utilizator>? ReadUtilizatori()
         {
-            UtilizatorTable();
-            if (utilizatoriTable == null)
+            // Constructing SQL statement
+            string query = "SELECT * FROM utilizator";
+            DataTable dataTable = repository.ExecuteQuery(query);
+            if (dataTable.Rows.Count == 0)
             {
                 return null;
             }
+            // Convert DataTable to List<Utilizator>
+            List<Utilizator> utilizatori = new List<Utilizator>();
+            foreach (DataRow row in dataTable.Rows)
+            {
+                utilizatori.Add(RowToUtilizator(row));
+            }
+            return utilizatori;
+        }       
+
+        public bool UpdateUtilizator(Utilizator utilizator)
+        {
+            // Constructing SQL statement
+            string nonQuery = $"UPDATE utilizator SET " +
+                              $"Nume = '{utilizator.Nume}', " +
+                              $"Email = '{utilizator.Email}', " +
+                              $"Parola = '{utilizator.Parola}', " +
+                              $"User_Type = '{utilizator.UserType}', " +
+                              $"Telefon = '{utilizator.Telefon}' " +
+                              $"WHERE id = {utilizator.Id}";
+            return repository.ExecuteNonQuery(nonQuery);
+        }
+
+        public bool DeleteUtilizator(int id)
+        {
+            // Constructing SQL statement
+            string nonQuery = $"DELETE FROM utilizator WHERE id = {id}";
+            return repository.ExecuteNonQuery(nonQuery);
+        }
+
+
+        //Filter methods        
+        public List<Utilizator>? ReadUtilizatoribyUserType(UserType userType)
+        {
+            // Constructing SQL statement
+            string type = userType.ToString();
+            string query = $"SELECT * FROM utilizator WHERE User_Type = '{type}'";
+            DataTable utilizatoriTable = repository.ExecuteQuery(query);
+            if (utilizatoriTable.Rows.Count == 0)
+            {
+                return null; // No utilizator with that type
+            }
+            // Convert DataTable to List<Utilizator>
             List<Utilizator> utilizatori = new List<Utilizator>();
             foreach (DataRow row in utilizatoriTable.Rows)
             {
-                utilizatori.Add(rowToUtilizator(row));
+                utilizatori.Add(RowToUtilizator(row));
             }
             return utilizatori;
         }
 
-        public Utilizator GetUtilizatorById(int id)
+        public Utilizator? ReadUtilizatorbyEmailandParola(string email, string parola)
         {
-            UtilizatorTable();
-            if (utilizatoriTable == null)
+            // Constructing SQL statement
+            string query = $"SELECT * FROM utilizator WHERE Email = '{email}' AND Parola = '{parola}'";
+            DataTable utilizatoriTable = repository.ExecuteQuery(query);
+            if(utilizatoriTable.Rows.Count == 0)
             {
-                return null;
+                return null; // No utilizator with that email and password
             }
-            foreach (DataRow row in utilizatoriTable.Rows)
-            {
-                if (Convert.ToInt32(row["id"]) == id)
-                {
-                    return rowToUtilizator(row);
-                }
-            }
-            return null;
-        }
-
-        public bool updateUtilizator(Utilizator utilizator)
-        {
-            string nonQuery = "update utilizatori set " +
-                "nume = '" + utilizator.Nume + "', " +
-                "email = '" + utilizator.Email + "', " +
-                "parola = '" + utilizator.Parola + "', " +
-                "user_type = '" + utilizator.UserType + "', " +
-                "telefon = '" + utilizator.Telefon + "' " +
-                "where id = " + utilizator.Id;
-            return repository.ExecuteNonQuery(nonQuery);
-        }
-
-        public bool deleteUtilizator(int id)
-        {
-            string nonQuery = "delete from utilizatori where id = " + id;
-            return repository.ExecuteNonQuery(nonQuery);
-        }
-
-        //Filters
-        public Utilizator GetUtilizatorbyNume(string nume)
-        {
-            UtilizatorTable();
-            if (utilizatoriTable == null)
-            {
-                return null;
-            }
-            foreach (DataRow row in utilizatoriTable.Rows)
-            {
-                if (row["nume"].ToString() == nume)
-                {
-                    return rowToUtilizator(row);
-                }
-            }
-            return null;
-        }
-        public List<Utilizator> GetUtilizatorsbyUserType(UserType userType)
-        {
-            UtilizatorTable();
-            if (utilizatoriTable == null)
-            {
-                return null;
-            }
-            List<Utilizator> utilizatori = new List<Utilizator>();
-            foreach (DataRow row in utilizatoriTable.Rows)
-            {
-                if ((UserType)Enum.Parse(typeof(UserType), row["user_type"].ToString()) == userType)
-                {
-                    utilizatori.Add(rowToUtilizator(row));
-                }
-            }
-            return utilizatori;
-        }
-        public Utilizator GetUtilizatorbyEmailandParola(string email, string parola)
-        {
-            UtilizatorTable();
-            if (utilizatoriTable == null)
-            {
-                return null;
-            }
-            foreach (DataRow row in utilizatoriTable.Rows)
-            {
-                if (row["email"].ToString() == email && row["parola"].ToString() == parola)
-                {
-                    return rowToUtilizator(row);
-                }
-            }
-            return null;
-        }
-        public Utilizator GetUtilizatorbyEmail(string email)
-        {
-            UtilizatorTable();
-            if (utilizatoriTable == null)
-            {
-                return null;
-            }
-            foreach (DataRow row in utilizatoriTable.Rows)
-            {
-                if (row["email"].ToString() == email)
-                {
-                    return rowToUtilizator(row);
-                }
-            }
-            return null;
-        }
+            // Convert DataTable to Utilizator
+            return RowToUtilizator(utilizatoriTable.Rows[0]);            
+        }        
     }
 }

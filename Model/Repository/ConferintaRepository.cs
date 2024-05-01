@@ -9,107 +9,89 @@ namespace PS_TEMA3.Model.Repository
 {
     public class ConferintaRepository
     {
-        private Repository repository;
-        /*Conferinta =  private int id;
-                        private String titlu;
-                        private String locatie;
-                        private String data;
-                        private List<Utilizator> participanti;
-                        private List<Prezentare> prezentari;
-                        */
+        private Repository repository;       
 
         public ConferintaRepository()
         {
             repository = new Repository();
         }
 
-        public DataTable ConferintaTable()
+        //Utility methods
+        private static Conferinta RowToConferinta(DataRow row)
         {
-            string query = "SELECT * FROM conferinte";
-            DataTable conferinteTable = repository.ExecuteQuery(query);
-            if (conferinteTable != null || conferinteTable.Rows.Count != 0)
+
+            Conferinta conferinta = new Conferinta
             {
-                return conferinteTable;
-            }
-            return null;
-        }
-
-        public Conferinta rowToConferinta(DataRow row)
-        {
-
-            Conferinta conferinta = new Conferinta();
-            conferinta.Id = Convert.ToInt32(row["id"]);
-            conferinta.Titlu = row["titlu"].ToString();
-            conferinta.Locatie = row["locatie"].ToString();
-            //create a variable to store the date and format it as yyyy-MM-dd
-            DateTime date = Convert.ToDateTime(row["data"]);          
-            conferinta.Data = date.ToString("yyyy-MM-dd");
-            
+                Id = Convert.ToInt32(row["id"]),
+                Titlu = row["titlu"].ToString(),
+                Locatie = row["locatie"].ToString(),
+                Data = Convert.ToDateTime(row["data"])
+            };
             return conferinta;
         }
 
-        //CRUD
-        public bool AddConferinta(Conferinta conferinta)
+        //CRUD methods
+        public bool CreateConferinta(Conferinta conferinta)
         {
-            string query = "INSERT INTO conferinte( titlu, locatie, data) VALUES ('" +
-                conferinta.Titlu + "', '" +
-                conferinta.Locatie + "', '" +
-                conferinta.Data + "')";
-            return repository.ExecuteNonQuery(query);
+            // Constructing SQL statement 
+            string nonQuery = $"INSERT INTO conferinta (titlu, locatie, data) VALUES ('" +
+                              $"{conferinta.Titlu}', '" +
+                              $"{conferinta.Locatie}', '" +
+                              $"{conferinta.Data}')";
+            //Execute the query
+            return repository.ExecuteNonQuery(nonQuery);
         }
 
-        public List<Conferinta> GetConferinte()
+        public List<Conferinta>? ReadConferinte()
         {
-            DataTable conferinteTable = ConferintaTable();
-            if (conferinteTable == null)
+            // Constructing SQL statement
+            string query = "SELECT * FROM conferinta";
+            DataTable conferinteTable = repository.ExecuteQuery(query);
+            if (conferinteTable.Rows.Count == 0)
             {
-                return null;
+                return null; // No conferinte
             }
+            // Convert DataTable to List<Conferinta>
             List<Conferinta> conferinte = new List<Conferinta>();
             foreach (DataRow row in conferinteTable.Rows)
             {
-                Conferinta conferinta = rowToConferinta(row);
-                conferinte.Add(conferinta);
+                conferinte.Add(RowToConferinta(row));
             }
             return conferinte;
         }
 
-        public Conferinta GetConferintabyID(int id)
+        public Conferinta? ReadConferintabyID(int id)
         {
-            DataTable conferinteTable = ConferintaTable();
-            if (conferinteTable == null)
+            // Constructing SQL statement
+            string query = $"SELECT * FROM conferinta WHERE id = {id}";
+            DataTable conferinteTable = repository.ExecuteQuery(query);
+            if (conferinteTable.Rows.Count == 0)
             {
-                return null;
+                return null; // No conferinte with that id
             }
-            foreach (DataRow row in conferinteTable.Rows)
-            {
-                Conferinta conferinta = rowToConferinta(row);
-                if (conferinta.Id == id)
-                {
-                    return conferinta;
-                }
-            }
-            return null;
+            // Convert DataTable to Conferinta
+            return RowToConferinta(conferinteTable.Rows[0]);
         }
 
         public bool UpdateConferinta(Conferinta conferinta)
         {
-            string query = "UPDATE conferinte SET titlu = '" + conferinta.Titlu +
-                "', locatie = '" + conferinta.Locatie +
-                "', data = '" + conferinta.Data +
-                "' WHERE id = " + conferinta.Id; // Assuming there's an ID field to specify which row to update
-
-            return repository.ExecuteNonQuery(query);
+            // Constructing SQL statement
+            string nonQuery = $"UPDATE conferinta SET " +
+                              $"titlu = '{conferinta.Titlu}', " +
+                              $"locatie = '{conferinta.Locatie}', " +
+                              $"data = '{conferinta.Data}' " +
+                              $"WHERE id = {conferinta.Id}";
+            //Execute the query
+            return repository.ExecuteNonQuery(nonQuery);
         }
 
         public bool DeleteConferinta(int id)
         {
-            string query = "DELETE FROM conferinte WHERE id = " + id;
-            return repository.ExecuteNonQuery(query);
+            // Constructing SQL statement
+            string nonQuery = $"DELETE FROM conferinta WHERE id = {id}";
+            //Execute the query
+            return repository.ExecuteNonQuery(nonQuery);
         }
-
-        //Filters
-
 
     }
 }

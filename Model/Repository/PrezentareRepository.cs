@@ -1,53 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
 
 namespace PS_TEMA3.Model.Repository
-{    
+{
     public class PrezentareRepository
     {
-        private Repository repository;
-        private DataTable prezentariTable;
+        private Repository repository;        
 
         public PrezentareRepository()
         {
             repository = new Repository();
         }
 
+
+        //Utility methods
         private Prezentare RowToPrezentare(DataRow row)
         {
-            DateTime date = Convert.ToDateTime(row["data"]);               
             return new Prezentare
             {
                 Id = Convert.ToInt32(row["id"]),
                 Titlu = row["titlu"].ToString(),
-                IdAutor = Convert.ToInt32(row["id_autor"]),
-                Descriere = row["descriere"].ToString(),        
-                Data = DateOnly.FromDateTime(date),
-                Ora = TimeSpan.Parse(row["ora"].ToString()),
+                Descriere = row["descriere"].ToString(),
+                Data = Convert.ToDateTime(row["data"]),  
+                Ora = TimeSpan.Parse(row["ora"].ToString()),  
                 Sectiune = (Sectiune)Enum.Parse(typeof(Sectiune), row["sectiune"].ToString()),
                 IdConferinta = Convert.ToInt32(row["id_conferinta"])
             };
+        }        
+
+
+        //CRUD methods
+        public bool CreatePrezentare(Prezentare prezentare)
+        {
+            // Safely format the date and time to avoid SQL injection, but this is minimal and does not provide complete protection.
+            string safeDate = prezentare.Data.ToString("yyyy-MM-dd");
+            string safeTime = prezentare.Ora.ToString();
+            
+            string titlu = prezentare.Titlu.Replace("'", "''");
+            string descriere = prezentare.Descriere.Replace("'", "''");
+
+            string query = $"INSERT INTO prezentare (titlu, descriere, data, ora, sectiune, id_conferinta) " +
+                $"VALUES ('{titlu}', " +
+                $"'{descriere}', " +
+                $"'{safeDate}', " +
+                $"'{safeTime}', " +
+                $"'{prezentare.Sectiune}', " +
+                $"{prezentare.IdConferinta})";
+            return repository.ExecuteNonQuery(query);
         }
 
-        public List<Prezentare> GetPrezentari()
+        public Prezentare? ReadPrezentareById(int id)
         {
-            string query = "SELECT * FROM prezentari";
-            DataTable table = repository.ExecuteQuery(query);
-            List<Prezentare> prezentari = new List<Prezentare>();
-            foreach (DataRow row in table.Rows)
-            {
-                prezentari.Add(RowToPrezentare(row));
-            }
-            return prezentari;
-        }
-
-        public Prezentare GetPrezentareById(int id)
-        {
-            string query = $"SELECT * FROM prezentari WHERE id = {id}";
+            string query = $"SELECT * FROM prezentare WHERE id = {id}";
             DataTable table = repository.ExecuteQuery(query);
             if (table.Rows.Count > 0)
             {
@@ -56,75 +59,61 @@ namespace PS_TEMA3.Model.Repository
             return null;
         }
 
-        public bool AddPrezentare(Prezentare prezentare)
+        public List<Prezentare>? ReadPrezentari()
         {
-            string query = $"INSERT INTO prezentari (titlu, id_autor, descriere, data, ora, sectiune, id_conferinta) VALUES ('{prezentare.Titlu}', {prezentare.IdAutor}, '{prezentare.Descriere}', '{prezentare.Data:yyyy-MM-dd}', '{prezentare.Ora}', '{prezentare.Sectiune}', {prezentare.IdConferinta})";
-            return repository.ExecuteNonQuery(query);
-        }
+            string query = "SELECT * FROM prezentare";
+            DataTable table = repository.ExecuteQuery(query);
+            List<Prezentare> prezentari = new List<Prezentare>();
+            foreach (DataRow row in table.Rows)
+            {
+                prezentari.Add(RowToPrezentare(row));
+            }
+            return prezentari;
+        }      
 
         public bool UpdatePrezentare(Prezentare prezentare)
-        {
-            string query = $"UPDATE prezentari SET titlu = '{prezentare.Titlu}', id_autor = {prezentare.IdAutor}, descriere = '{prezentare.Descriere}', data = '{prezentare.Data:yyyy-MM-dd}', ora = '{prezentare.Ora}', sectiune = '{prezentare.Sectiune}', id_conferinta = {prezentare.IdConferinta} WHERE id = {prezentare.Id}";
+        {            
+            string titluEscaped = prezentare.Titlu.Replace("'", "''");
+            string descriereEscaped = prezentare.Descriere.Replace("'", "''");
+
+            // Format dates and enums properly.
+            string formattedDate = prezentare.Data.ToString("yyyy-MM-dd");
+            string formattedTime = prezentare.Ora.ToString();
+            string sectiuneAsString = prezentare.Sectiune.ToString(); 
+
+            string query = $@"
+                UPDATE prezentare
+                SET
+                    titlu = '{titluEscaped}',
+                    descriere = '{descriereEscaped}',
+                    data = '{formattedDate}',
+                    ora = '{formattedTime}',
+                    sectiune = '{sectiuneAsString}',
+                    id_conferinta = {prezentare.IdConferinta}
+                WHERE id = {prezentare.Id}";
             return repository.ExecuteNonQuery(query);
         }
 
         public bool DeletePrezentare(int id)
         {
-            string query = $"DELETE FROM prezentari WHERE id = {id}";
+            string query = $"DELETE FROM prezentare WHERE id = {id}";
             return repository.ExecuteNonQuery(query);
         }
 
-        public void PrezentareTable()
-        {
-            string query = "SELECT * FROM prezentari";
-            prezentariTable = repository.ExecuteQuery(query);
-            if (prezentariTable != null || prezentariTable.Rows.Count != 0)
-            {
-                this.prezentariTable = prezentariTable;
-            }
-        }
-        //Filters
 
-        public List<Prezentare> getPrezentariBySectiune(Sectiune sectiune)
+        //Filter methods
+        public List<Prezentare> ReadPrezentariBySectiune(Sectiune sectiune)
         {
-            PrezentareTable();
+            string query = $"SELECT * FROM prezentare WHERE sectiune = '{sectiune}'";
+            DataTable table = repository.ExecuteQuery(query);
             List<Prezentare> prezentari = new List<Prezentare>();
-            foreach (DataRow row in prezentariTable.Rows)
+            foreach (DataRow row in table.Rows)
             {
-                if (row["sectiune"].ToString().Equals(sectiune.ToString()))
-                {
-                    prezentari.Add(RowToPrezentare(row));
-                }
+                prezentari.Add(RowToPrezentare(row));
             }
             return prezentari;
         }
-
-        public List<Prezentare> GetPrezentarebySectiune(Sectiune sectiune)
-        {
-            PrezentareTable();
-            List<Prezentare> prezentari = new List<Prezentare>();
-            foreach (DataRow row in prezentariTable.Rows)
-            {
-                if (row["sectiune"].ToString().Equals(sectiune.ToString()))
-                {
-                    prezentari.Add(RowToPrezentare(row));
-                }
-            }
-            return prezentari;
-        }
-
-        public Prezentare GetPrezentarebyTitlu(string titlu)
-        {
-            PrezentareTable();
-            foreach (DataRow row in prezentariTable.Rows)
-            {
-                if (row["titlu"].ToString().Equals(titlu))
-                {
-                    return RowToPrezentare(row);
-                }
-            }
-            return null;
-        }
+        
     }
 
 }

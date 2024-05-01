@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PS_TEMA3.Model
+﻿namespace PS_TEMA3.Model
 {
     public class Conferinta
     {
         public int Id { get; set; }
         public string Titlu { get; set; }
         public string Locatie { get; set; }
-        public string Data { get; set; }
+        public DateTime Data { get; set; }  
 
-        public Conferinta(int id, string titlu, string locatie, string data)
+        public Conferinta(int id, string titlu, string locatie, DateTime data)
         {
             this.Id = id;
             this.Titlu = titlu;
@@ -27,7 +21,6 @@ namespace PS_TEMA3.Model
             this.Titlu = conferinta.Titlu;
             this.Locatie = conferinta.Locatie;
             this.Data = conferinta.Data;
-
         }
 
         public Conferinta()
@@ -35,7 +28,7 @@ namespace PS_TEMA3.Model
             this.Id = 0;
             this.Titlu = "";
             this.Locatie = "";
-            this.Data = "";
+            this.Data = DateTime.MinValue;  // Default to a non-null DateTime
         }
     }
 }

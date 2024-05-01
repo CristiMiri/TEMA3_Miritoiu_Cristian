@@ -1,23 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PS_TEMA3.Model
+﻿namespace PS_TEMA3.Model
 {
     public class Participant
-    {
+    {        
         public int Id { get; set; }
         public string Nume { get; set; }
         public string Email { get; set; }
         public string Telefon { get; set; }
         public string CNP { get; set; }
         public string PdfFilePath { get; set; }
-        public int IdPrezentare { get; set; }
+        public string PhotoFilePath { get; set; }          
 
-
-        public Participant(int id, string nume, string email, string telefon, string cnp, string pdfFilePath, int idPrezentare)
+        // Full constructor initializing all properties
+        public Participant(int id, string nume, string email, string telefon, string cnp, string pdfFilePath, string photoFilePath)
         {
             Id = id;
             Nume = nume;
@@ -25,10 +19,10 @@ namespace PS_TEMA3.Model
             Telefon = telefon;
             CNP = cnp;
             PdfFilePath = pdfFilePath;
-            IdPrezentare = idPrezentare;
+            PhotoFilePath = photoFilePath;             
         }
 
-        // Default constructor
+        // Default constructor for initializing with default values
         public Participant()
         {
             Id = 0;
@@ -37,9 +31,19 @@ namespace PS_TEMA3.Model
             Telefon = "";
             CNP = "";
             PdfFilePath = "";
-            IdPrezentare = 0;
+            PhotoFilePath = "";              
         }
 
+        public Participant(Participant participant)
+        {
+            Id = participant.Id;
+            Nume = participant.Nume;
+            Email = participant.Email;
+            Telefon = participant.Telefon;
+            CNP = participant.CNP;
+            PdfFilePath = participant.PdfFilePath;
+            PhotoFilePath = participant.PhotoFilePath;             
+        }
 
     }
 }

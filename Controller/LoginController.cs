@@ -26,11 +26,11 @@ namespace PS_TEMA3.Controller
             loginGUI.GetBackButton().Click += new RoutedEventHandler(Back);
         }
 
-        private Utilizator ValidUtilizatorData()
+        private Utilizator? ValidUtilizatorData()
         {
             string email = loginGUI.GetEmailTextBox().Text;
             string password = loginGUI.GetPasswordTextBox().Text;
-            if(String.IsNullOrEmpty(email) || String.IsNullOrEmpty(password))
+            if (String.IsNullOrEmpty(email) || String.IsNullOrEmpty(password))
             {
                 loginGUI.ShowError("Email and password are required!");
                 return null;
@@ -40,27 +40,34 @@ namespace PS_TEMA3.Controller
 
         private void Login(object sender, RoutedEventArgs e)
         {
-            Utilizator utilizator = ValidUtilizatorData();
-            if (utilizator != null)
+            try
             {
-               utilizator= utilizatorRepository.GetUtilizatorbyEmailandParola(utilizator.Email, utilizator.Parola);
-               switch (utilizator.UserType)
-               {
-                    case UserType.ADMINISTRATOR:
-                       //Navigate to AdminGUI
-                       showPage(new AdminGUI());
-                       break;
-                    case UserType.PARTICIPANT:
-                       //Navigate to UserGUI
-                       showPage(new UtilizatorGUI());
-                       break;
-                    case UserType.ORGANIZATOR:                       
-                       showPage(new OrganizatorGUI());
-                       break;
-                   default:
-                       loginGUI.ShowError("Invalid email or password!");
-                       break;
-               }               
+                Utilizator utilizator = ValidUtilizatorData();
+                if (utilizator != null)
+                {
+                    utilizator = utilizatorRepository.ReadUtilizatorbyEmailandParola(utilizator.Email, utilizator.Parola);
+                    switch (utilizator.UserType)
+                    {
+                        case UserType.ADMINISTRATOR:
+                            //Navigate to AdminGUI
+                            showPage(new AdminGUI());
+                            break;
+                        case UserType.PARTICIPANT:
+                            //Navigate to UserGUI
+                            showPage(new UtilizatorGUI());
+                            break;
+                        case UserType.ORGANIZATOR:
+                            showPage(new OrganizatorGUI());
+                            break;
+                        default:
+                            loginGUI.ShowError("Invalid email or password!");
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                loginGUI.ShowError("Invalid email or password!");
             }
         }
 

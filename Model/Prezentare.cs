@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PS_TEMA3.Model
 {
@@ -19,54 +15,48 @@ namespace PS_TEMA3.Model
     public class Prezentare
     {
         public int Id { get; set; }
-        public string Titlu { get; set; }
-        public int IdAutor { get; set; } 
+        public string Titlu { get; set; }        
         public string Descriere { get; set; }
-        public DateOnly Data { get; set; }
+        public DateTime Data { get; set; } 
         public TimeSpan Ora { get; set; } 
         public Sectiune Sectiune { get; set; }
-        public int IdConferinta { get; set; } 
+        public int IdConferinta { get; set; }
+        public int IdAutor { get; set; }
 
-        // Default constructor
-        public Prezentare()
+        public Prezentare()  // Default constructor initializes default values
         {
             Id = 0;
-            Titlu = "";
-            IdAutor = 0;
+            Titlu = "";            
             Descriere = "";
-            Data = DateOnly.FromDateTime(DateTime.Now);
-            Ora = DateTime.Now.TimeOfDay;
+            Data = DateTime.Today;  
+            Ora = TimeSpan.Zero;  
             Sectiune = Sectiune.TOATE;
             IdConferinta = 0;
+            IdAutor = 0;
         }
 
-        // Parameterized constructor 
-        public Prezentare(int id, string titlu, int idAutor, string descriere, DateOnly data, TimeSpan ora, Sectiune sectiune, int idConferinta)
+        public Prezentare(int id, string titlu, string descriere, DateTime data, TimeSpan ora, Sectiune sectiune, int idConferinta,int IdAutor)
         {
             Id = id;
-            Titlu = titlu;
-            IdAutor = idAutor;
+            Titlu = titlu;            
             Descriere = descriere;
             Data = data;
             Ora = ora;
             Sectiune = sectiune;
             IdConferinta = idConferinta;
+            IdAutor = IdAutor;
         }
 
-        // Copy constructor
-        public Prezentare(Prezentare prezentare)
+        public Prezentare(Prezentare prezentare)  // Copy constructor
         {
             Id = prezentare.Id;
-            Titlu = prezentare.Titlu;
-            IdAutor = prezentare.IdAutor;
+            Titlu = prezentare.Titlu;            
             Descriere = prezentare.Descriere;
             Data = prezentare.Data;
             Ora = prezentare.Ora;
             Sectiune = prezentare.Sectiune;
             IdConferinta = prezentare.IdConferinta;
+            IdAutor = prezentare.IdAutor;
         }
     }
 }
-
-
-

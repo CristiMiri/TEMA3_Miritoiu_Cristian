@@ -62,6 +62,27 @@ namespace PS_TEMA3.View
             return this.IdConferintaTextBox;
         }
 
+        public TextBox getNumeParticipantiTextBox()
+        {
+            return this.NumeTextBox;
+        }
+
+        public TextBox getEmailParticipantiTextBox()
+        {
+            return this.EmailTextBox;
+        }
+
+        public TextBox getTelefonParticipantiTextBox()
+        {
+            return this.TelefonTextBox;
+        }
+
+        public TextBox getIdPrezentareVizitataTextBox()
+        {
+            return this.IdPrezentareTextBox;
+        }
+
+
         // Similarly, add getters for other controls, including buttons and DataGrids
 
         public DataGrid GetTabelPrezentari()
@@ -108,6 +129,16 @@ namespace PS_TEMA3.View
         public Button getDownloadButton()
         {
             return this.DownloadButton;
+        }
+
+        public Button getAcceptButton()
+        {
+            return this.AcceptParticipantButton;
+        }
+
+        public Button getRejectButton()
+        {
+            return this.RejectParticipantButton;
         }
     }
 

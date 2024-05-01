@@ -15,6 +15,7 @@ namespace PS_TEMA3.Controller
         private PrezentareRepository prezentareRepository;
         private ConferintaRepository conferintaRepository;
         private ParticipantiRepository participantRepository;
+        private Participant_PrezentareRepository participant_PrezentareRepository;
         private UtilizatorGUI _utilizatorGUI;
 
         public UtilizatorController(UtilizatorGUI utilizatorGUI)
@@ -23,18 +24,26 @@ namespace PS_TEMA3.Controller
             prezentareRepository = new PrezentareRepository();
             conferintaRepository = new ConferintaRepository();
             participantRepository = new ParticipantiRepository();
+            participant_PrezentareRepository = new Participant_PrezentareRepository(participantRepository, prezentareRepository);
             utilizatorGUI.GetBackButton().Click += Back;
             LoadConferinte();
         }
 
         public void LoadConferinte()
         {
-            List<Conferinta> conferinte = conferintaRepository.GetConferinte();
-            List<Prezentare> prezentari = prezentareRepository.GetPrezentari();
-            List<Participant> participanti = participantRepository.GetParticipanti();
+            List<Conferinta> conferinte = conferintaRepository.ReadConferinte();
+            List<Prezentare> prezentari = prezentareRepository.ReadPrezentari();
+            List<Participant> participanti = participantRepository.ReadParticipanti();
+
+            List<Participant> autori = new List<Participant>();
+            foreach (Prezentare p in prezentari)
+            {
+                List<Participant> autorPrezentare = participant_PrezentareRepository.ReadRelationsbyRole<Participant>(p.Id, "AUTOR", "Participant");
+                autori.AddRange(autorPrezentare);
+            }
             var ListaCompleta = (from conferinta in conferinte
                                              join prezentare in prezentari on conferinta.Id equals prezentare.IdConferinta
-                                             join participant in participanti on prezentare.IdAutor equals participant.Id
+                                             
                                              orderby prezentare.Id
                                              select new
                                              {
@@ -43,8 +52,7 @@ namespace PS_TEMA3.Controller
                                                  ConferintaLocatie = conferinta.Locatie,
                                                  ConferintaData = conferinta.Data,
                                                  PrezentareId = prezentare.Id,
-                                                 PrezentareTitlu = prezentare.Titlu,
-                                                 PrezentareAutor = participant.Nume,
+                                                 PrezentareTitlu = prezentare.Titlu,                                                 
                                                  PrezentareDescriere = prezentare.Descriere,
                                                  PrezentareData = prezentare.Data,
                                                  PrezentareOra = prezentare.Ora,

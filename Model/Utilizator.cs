@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
-
 namespace PS_TEMA3.Model
 {
     public enum UserType
@@ -15,7 +12,7 @@ namespace PS_TEMA3.Model
 
     public class Utilizator
     {
-        
+        // Simplified property declarations for all attributes
         public int Id { get; set; }
         public string Nume { get; set; }
         public string Email { get; set; }
@@ -23,51 +20,49 @@ namespace PS_TEMA3.Model
         public UserType UserType { get; set; }
         public string Telefon { get; set; }
         
-
         public Utilizator(int id, string nume, string email, string parola, UserType userType, string telefon)
         {
-            this.Id = id;
-            this.Nume = nume;
-            this.Email = email;
-            this.Parola = parola;
-            this.UserType = userType;
-            this.Telefon = telefon;
+            Id = id;
+            Nume = nume;
+            Email = email;
+            Parola = HashPassword(parola); // Ensuring password is hashed when set
+            UserType = userType;
+            Telefon = telefon;
         }
 
         public Utilizator(Utilizator utilizator)
+            : this(utilizator.Id, utilizator.Nume, utilizator.Email, utilizator.Parola, utilizator.UserType, utilizator.Telefon)
         {
-            this.Id = utilizator.Id;
-            this.Nume = utilizator.Nume;
-            this.Email = utilizator.Email;
-            this.Parola = utilizator.Parola;
-            this.UserType = utilizator.UserType;
-            this.Telefon = utilizator.Telefon;
         }
 
         public Utilizator()
-        {            
-            this.Id = 0;
-            this.Nume = "";
-            this.Email = "";
-            this.Parola = "";
-            this.UserType = UserType.PARTICIPANT;
-            this.Telefon = "";
+        {
+            Id = 0;
+            Nume = "";
+            Email = "";
+            Parola = "";
+            UserType = UserType.PARTICIPANT;
+            Telefon = "";
         }
 
-        public Utilizator(string email, string password)
-        {            
-            this.Email = email;
-            this.Parola = password;
-            this.Id = 0;
-            this.Nume = "";
-            this.UserType = UserType.PARTICIPANT;
-            this.Telefon = "";
+        public Utilizator(string email, string parola)
+            : this(0, "", email, parola, UserType.PARTICIPANT, "")
+        {
         }
 
-
+        // Password hashing function to ensure password security.
+        private string HashPassword(string password)
+        {
+            using (var sha256 = SHA256.Create())
+            {
+                var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                return BitConverter.ToString(hashedBytes).Replace("-", "").ToLowerInvariant();
+            }
+        }
+       
         public override string ToString()
         {
-            return "Utilizatorul cu id-ul " + Id + " si numele " + Nume + " are email-ul " + Email + " si parola " + Parola + " si este de tipul " + UserType + " si are numarul de telefon " + Telefon + ".";
+            return $"Utilizatorul cu id-ul {Id} si numele {Nume} are email-ul {Email} si este de tipul {UserType} si are numarul de telefon {Telefon}.";
         }
     }
 }

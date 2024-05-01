@@ -63,11 +63,37 @@ namespace PS_TEMA3.View
             return this.FilterPrezenariButton;
         }
 
+        public TextBox getPhotoPathTexBox()
+        {
+            return this.txtPhotoPath;
+        }
+
+        public TextBox getDocumentPathTexBox()
+        {
+            return this.txtDocumentPath;
+        }
+
+
         //Buttons
         public Button getLoginButton()
         {
             return this.loginButton;
         }        
+
+        public Button getBrowseDocumentButton()
+        {
+            return this.BrowseDocumentButton;
+        }
+
+        public Button getBrowsePhotoButton()
+        {
+            return this.BrowsePhotoButton;
+        }
+
+        public Button getInscriereButton()
+        {
+            return this.InscriereButton;
+        }
     }
 
 }
