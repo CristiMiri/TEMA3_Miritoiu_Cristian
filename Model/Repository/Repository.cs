@@ -1,51 +1,69 @@
 ﻿using Npgsql;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PS_TEMA3.Model.Repository
 {
     public class Repository
     {
-        private NpgsqlConnection conection;
-        public Repository()
+        private NpgsqlConnection connection;
+        private static readonly object padlock = new object();
+        private static Repository instance = null;
+
+        // Private constructor to prevent direct instantiation
+        private Repository()
         {
             string connString = "Server=localhost;Port=5432;Database=PS_TEMA1;User Id=postgres;Password=sql;";
-            conection = new NpgsqlConnection(connString);
+            connection = new NpgsqlConnection(connString);
+        }
+
+        // Public property to provide access to the single instance
+        public static Repository Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    lock (padlock)
+                    {
+                        if (instance == null)
+                        {
+                            instance = new Repository();
+                        }
+                    }
+                }
+                return instance;
+            }
         }
 
         public NpgsqlConnection Connection
         {
-            get { return conection; }
-            set { conection = value; }
+            get { return connection; }
+            set { connection = value; }
         }
 
-        //Open the connection to the database
+        // Open the connection to the database
         public void OpenConnection()
         {
-            if (conection.State != System.Data.ConnectionState.Open)
-                conection.Open();
+            if (connection.State != ConnectionState.Open)
+                connection.Open();
         }
 
-        //Close the connection to the database
+        // Close the connection to the database
         public void CloseConnection()
         {
-            if (conection.State != System.Data.ConnectionState.Closed)
-                conection.Close();
+            if (connection.State != ConnectionState.Closed)
+                connection.Close();
         }
 
-
-        //Execute nonquery to modify the database (insert, update, delete)
-        //and return status of the operation
+        // Execute nonquery to modify the database (insert, update, delete)
+        // and return status of the operation
         public bool ExecuteNonQuery(string query)
         {
             try
             {
                 OpenConnection();
-                NpgsqlCommand cmd = new NpgsqlCommand(query, conection);
+                NpgsqlCommand cmd = new NpgsqlCommand(query, connection);
                 cmd.ExecuteNonQuery();
                 return true; // Success if no exception
             }
@@ -60,15 +78,14 @@ namespace PS_TEMA3.Model.Repository
             }
         }
 
-
-        //Execute query to get data from database
+        // Execute query to get data from database
         public DataTable ExecuteQuery(string query)
         {
             DataTable dt = new DataTable();
             try
             {
                 OpenConnection();
-                NpgsqlCommand cmd = new NpgsqlCommand(query, conection);
+                NpgsqlCommand cmd = new NpgsqlCommand(query, connection);
                 NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
                 da.Fill(dt);
             }

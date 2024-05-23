@@ -1,4 +1,5 @@
 ﻿using PS_TEMA3.Controller;
+using PS_TEMA3.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,78 +22,176 @@ namespace PS_TEMA3.View
     /// </summary>
     public partial class HomeGUI : Page
     {
+        private HomeController homeController;
         public HomeGUI()
         {
             InitializeComponent();
-            HomeController homeController = new HomeController(this);
+            homeController = new HomeController(this);
 
         }
 
-        public TextBox GetTxtNume()
+        //Settable click event to return to the controller
+        
+
+        //Inscriere fields
+        //TextBox
+        public TextBox GetNameTextBox()
         {
-            return this.txtNume;
-        }
-
-        public TextBox GetTxtEmail()
+            return this.NameTextBox;
+        }        
+        public TextBox GetEmailTextBox()
         {
-            return this.txtEmail;
+            return this.EmailTextBox;
         }
-
-        public TextBox GetTxtTelefon()
+        public TextBox GetPhoneTextBox()
         {
-            return this.txtTelefon;
+            return this.PhoneTextBox;
         }
-
-        public ComboBox GetCmbPrezentare()
+        
+        public TextBox GetPinTextBox()
         {
-            return this.cmbPrezentare;
+            return this.PinTextBox;
         }
 
-        public ComboBox GetCmbSectiune()
+        public TextBox GetPhotoPathTexBox()
         {
-            return this.cmbSectiune;
+            return this.PhotoPathTextBox;
+        }
+        public TextBox GetDocumentPathTexBox()
+        {
+            return this.DocumentPathTextBox;
+        }
+        
+
+        //ComboBox
+        public ComboBox GetTypeComboBox()
+        {
+            return this.AuthorComboBox;
         }
 
+        //Participant fields
+        public Label GetPresentationLabel()
+        {
+            return this.PresentationLabel;
+        }
+        public ComboBox GetAttendPresentationComboBox()
+        {
+            return this.AttendPresentationComboBox;
+        }
+
+
+        //Autor fields        
+        //TextBox
+        public TextBox GetTitleTextBox()
+        {
+            return this.TitleTextBox;
+        }
+        public TextBox GetDescriptionTextBox()
+        {
+            return this.DescriptionTextBox;
+        }
+        public TextBox GetTimeTextBox()
+        {
+            return this.TimeTextBox;
+        }
+
+        //DatePicker
+        public DatePicker GetDataDatePicker()
+        {
+            return this.PresentationDatePicker;
+        }
+
+        //ComboBox
+        public ComboBox GetSectionComboBox()
+        {
+            return this.SectionComboBox;
+        }
+        
+        //Labels
+        public Label GetTitleLabel()
+        {
+            return this.TitleLabel;
+        }
+        public Label GetDescriptionLabel()
+        {
+            return this.DescriptionLabel;
+        }
+        public Label GetTimeLabel()
+        {
+            return this.TimeLabel;
+        }
+        public Label GetDateLabel()
+        {
+            return this.DateLabel;
+        }
+        public Label GetSectionLabel()
+        {
+            return this.SectionLabel;
+        }
+
+
+        //Buttons
+        public Button getBrowseDocumentButton()
+        {
+            return this.BrowseDocumentButton;
+        }
+        public Button getBrowsePhotoButton()
+        {
+            return this.BrowsePhotoButton;
+        }
+        public Button getSingUpButton()
+        {
+            return this.SingUpButton;
+        }
+
+        public Button getRomanianButton()
+        {
+            return this.RomanianButton;
+        }
+
+        public Button getEnglishButton()
+        {
+            return this.EnglishButton;
+        }
+
+        //Filter fields
+        //ComboBox
+        public ComboBox GetFilterPresentationComboBox()
+        {
+            return this.FilterPresentationComboBox;
+        }
+        //Buttons
+        public Button GetFilterPresentationButton()
+        {
+            return this.FilterPresentationButton;
+        }
+
+
+        //Tabel fields
         public DataGrid GetTabelConferinte()
         {
             return this.TabelConferinte;
         }
 
-        public Button getFilterPrezenariButton()
-        {
-            return this.FilterPrezenariButton;
-        }
 
-        public TextBox getPhotoPathTexBox()
-        {
-            return this.txtPhotoPath;
-        }
-
-        public TextBox getDocumentPathTexBox()
-        {
-            return this.txtDocumentPath;
-        }
-
-
-        //Buttons
+        //Auxiliary fields
         public Button getLoginButton()
         {
             return this.loginButton;
         }        
 
-        public Button getBrowseDocumentButton()
+
+        public void ShowMessage(string message)
         {
-            return this.BrowseDocumentButton;
+            MessageBox.Show(message);
         }
 
-        public Button getBrowsePhotoButton()
+        public void DownloadLink_Click(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
         {
-            return this.BrowsePhotoButton;
-        }
-
-        public Button getInscriereButton()
-        {
-            return this.InscriereButton;
+            string pdfFilePath = e.Uri.ToString();
+            homeController.DownloadLink_Click(pdfFilePath);
+            e.Handled = true;            
+                      
         }
     }
 

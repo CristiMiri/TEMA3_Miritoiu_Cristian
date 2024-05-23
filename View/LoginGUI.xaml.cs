@@ -29,12 +29,12 @@ namespace PS_TEMA3.View
 
         public TextBox GetEmailTextBox()
         {
-            return this.txtEmail;
+            return this.EmailTextBox;
         }
 
         public TextBox GetPasswordTextBox()
         {
-            return this.txtPassword;
+            return this.PasswordTextBox;
         }
 
         // Optionally, you might want to add getters for the buttons if needed for UI testing or other operations

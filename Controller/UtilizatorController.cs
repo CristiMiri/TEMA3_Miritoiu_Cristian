@@ -3,6 +3,7 @@ using PS_TEMA3.Model.Repository;
 using PS_TEMA3.View;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,56 +13,82 @@ namespace PS_TEMA3.Controller
 {
     internal class UtilizatorController
     {
-        private PrezentareRepository prezentareRepository;
-        private ConferintaRepository conferintaRepository;
-        private ParticipantiRepository participantRepository;
-        private Participant_PrezentareRepository participant_PrezentareRepository;
-        private UtilizatorGUI _utilizatorGUI;
+        private readonly PresentationRepository _presentationRepository;
+        private readonly ConferenceRepository _conferenceRepository;
+        private readonly ParticipantRepository _participantRepository;
+        private readonly Participant_PrezentareRepository _participantPresentationRepository;
+        private readonly UtilizatorGUI _utilizatorGUI;
 
         public UtilizatorController(UtilizatorGUI utilizatorGUI)
         {
-            this._utilizatorGUI = utilizatorGUI;
-            prezentareRepository = new PrezentareRepository();
-            conferintaRepository = new ConferintaRepository();
-            participantRepository = new ParticipantiRepository();
-            participant_PrezentareRepository = new Participant_PrezentareRepository(participantRepository, prezentareRepository);
-            utilizatorGUI.GetBackButton().Click += Back;
-            LoadConferinte();
+            _utilizatorGUI = utilizatorGUI;
+            _presentationRepository = new PresentationRepository();
+            _conferenceRepository = new ConferenceRepository();
+            _participantRepository = new ParticipantRepository();
+            _participantPresentationRepository = new Participant_PrezentareRepository(_participantRepository, _presentationRepository);
+
+            InitializeEvents();
+            LoadConferencesTable();
         }
 
-        public void LoadConferinte()
+        private void InitializeEvents()
         {
-            List<Conferinta> conferinte = conferintaRepository.ReadConferinte();
-            List<Prezentare> prezentari = prezentareRepository.ReadPrezentari();
-            List<Participant> participanti = participantRepository.ReadParticipanti();
-
-            List<Participant> autori = new List<Participant>();
-            foreach (Prezentare p in prezentari)
-            {
-                List<Participant> autorPrezentare = participant_PrezentareRepository.ReadRelationsbyRole<Participant>(p.Id, "AUTOR", "Participant");
-                autori.AddRange(autorPrezentare);
-            }
-            var ListaCompleta = (from conferinta in conferinte
-                                             join prezentare in prezentari on conferinta.Id equals prezentare.IdConferinta
-                                             
-                                             orderby prezentare.Id
-                                             select new
-                                             {
-                                                 ConferintaId = conferinta.Id,
-                                                 ConferintaTitlu = conferinta.Titlu,
-                                                 ConferintaLocatie = conferinta.Locatie,
-                                                 ConferintaData = conferinta.Data,
-                                                 PrezentareId = prezentare.Id,
-                                                 PrezentareTitlu = prezentare.Titlu,                                                 
-                                                 PrezentareDescriere = prezentare.Descriere,
-                                                 PrezentareData = prezentare.Data,
-                                                 PrezentareOra = prezentare.Ora,
-                                                 PrezentareSectiune = prezentare.Sectiune,
-                                                 PrezentareConferintaId = prezentare.IdConferinta
-                                             }).ToList();
-            _utilizatorGUI.GetTabelConferinte().ItemsSource = ListaCompleta;
+            _utilizatorGUI.GetBackButton().Click += Back;
         }
+
+        private void LoadConferencesTable()
+        {
+            try
+            {
+                List<Presentation> presentations = _presentationRepository.ReadPresentations();
+                List<Participant> participants = _participantRepository.ReadParticipants();
+                foreach (Presentation presentation in presentations)
+                {
+                    presentation.Participants = _participantPresentationRepository.ReadParticipantsByPresentation(presentation);
+                    Participant author = _participantRepository.ReadParticipantById(presentation.IdAuthor);
+                    presentation.Author = new List<Participant> { author };
+                }
+                List<Conference> conferences = _conferenceRepository.ReadConferences();                
+                var completeList = (from conference in conferences
+                                    join presentation in presentations on conference.Id equals presentation.IdConference
+                                    join participant in participants on presentation.IdAuthor equals participant.Id
+                                    orderby presentation.Id
+                                    select new
+                                    {
+                                        ConferenceId = conference.Id,
+                                        ConferenceTitle = conference.Title,
+                                        ConferenceLocation = conference.Location,
+                                        ConferenceDate = conference.Date,
+                                        PresentationId = presentation.Id,
+                                        PresentationTitle = presentation.Title,
+                                        PresentationDescription = presentation.Description,
+                                        PresentationAuthor = participant.Name,
+                                        PresentationDate = presentation.Date,
+                                        PresentationHour = presentation.Hour,
+                                        PresentationSection = presentation.Section,
+                                        PresentationConferenceId = presentation.IdConference,
+                                        Title = presentation.Title,
+                                        Author = presentation.Author,
+                                        Description = presentation.Description,
+                                        Date = presentation.Date,
+                                        Section = presentation.Section,
+                                        ImageUrl = participant.PdfFilePath,
+                                        Participants = presentation.Participants,
+                                    }).ToList();
+
+                ObservableCollection<Presentation> prezentari_ = new ObservableCollection<Presentation>(presentations);
+                _utilizatorGUI.GetTabelConferinte().ItemsSource = completeList;
+
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while loading conferences: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
         
+
         private void Back(object sender, EventArgs e)
         {
             Application.Current.MainWindow.Content = new HomeGUI();

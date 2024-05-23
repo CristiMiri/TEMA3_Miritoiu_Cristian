@@ -1,0 +1,72 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <sys:String x:Key="Hello">Salut</sys:String>
+    <sys:String x:Key="Goodbye">La revedere</sys:String>
+    <sys:String x:Key="Confirm">Confirmă</sys:String>
+    <sys:String x:Key="Sign_up">Înscrie-te</sys:String>
+
+    <!--Common Text-->
+    <sys:String x:Key="BackButton">Înapoi</sys:String>
+    <sys:String x:Key="LoginButton">Autentificare</sys:String>
+
+    <!--Form Data-->
+
+    <sys:String x:Key="NameLabel">Nume:</sys:String>
+    <sys:String x:Key="EmailLabel">Email:</sys:String>
+    <sys:String x:Key="PasswordLabel">Parolă:</sys:String>
+    <sys:String x:Key="UserTypeLabel">Tip utilizator:</sys:String>
+    <sys:String x:Key="PhoneLabel">Telefon:</sys:String>
+    <sys:String x:Key="PINLabel">CNP:</sys:String>
+    <sys:String x:Key="PhotoLabel">Fotografie:</sys:String>
+    <sys:String x:Key="CVLabel">CV:</sys:String>
+    <sys:String x:Key="TypeLabel">Tip:</sys:String>
+    <sys:String x:Key="PresentationLabel">Prezentare:</sys:String>
+    <sys:String x:Key="TitleLabel">Titlu:</sys:String>
+    <sys:String x:Key="DescriptionLabel">Descriere:</sys:String>
+    <sys:String x:Key="DateLabel">Data:</sys:String>
+    <sys:String x:Key="TimeLabel">Oră:</sys:String>
+    <sys:String x:Key="SectionLabel">Secțiune:</sys:String>
+    <sys:String x:Key="SearchLabel">Căutare:</sys:String>
+    <sys:String x:Key="FilterLabel">Filtrează:</sys:String>
+    <sys:String x:Key="SearchbySectionLabel">Căutare după secțiune:</sys:String>
+    <!--User Table Data-->
+    <sys:String x:Key="IdHeader">ID</sys:String>
+    <sys:String x:Key="NameHeader">Nume</sys:String>
+    <sys:String x:Key="EmailHeader">Email</sys:String>
+    <sys:String x:Key="UserTypeHeader">Tip utilizator</sys:String>
+    <sys:String x:Key="PhoneHeader">Telefon</sys:String>
+    <sys:String x:Key="PasswordHeader">Parolă</sys:String>
+
+    <!--Conference Table Data-->
+    <sys:String x:Key="PresentationIdHeader">ID Prezentare</sys:String>
+    <sys:String x:Key="ConferenceTitleHeader">Titlu Conferință</sys:String>
+    <sys:String x:Key="ConferenceLocationHeader">Locație Conferință</sys:String>
+    <sys:String x:Key="ConferenceDateHeader">Data Conferință</sys:String>
+    <sys:String x:Key="PresentationTitleHeader">Titlu Prezentare</sys:String>
+    <sys:String x:Key="PresentationAuthorHeader">Autor Prezentare</sys:String>
+    <sys:String x:Key="PresentationDescriptionHeader">Descriere Prezentare</sys:String>
+    <sys:String x:Key="PresentationDateHeader">Data Prezentare</sys:String>
+    <sys:String x:Key="PresentationTimeHeader">Ora Prezentare</sys:String>
+    <sys:String x:Key="PresentationSectionHeader">Secțiune Prezentare</sys:String>
+
+    <!--Admin Page-->
+    <sys:String x:Key="AdminPageTitle">Administrare Utilizatori</sys:String>
+    <sys:String x:Key="CreateUserButton">Creează Utilizator</sys:String>
+    <sys:String x:Key="UpdateUserButton">Actualizează Utilizator</sys:String>
+    <sys:String x:Key="DeleteUserButton">Șterge Utilizator</sys:String>
+    <sys:String x:Key="FilterUsersLabel">Filtrează Utilizatori:</sys:String>
+    <sys:String x:Key="FilterUsersButton">Afișează Utilizatori</sys:String>
+
+    <sys:String x:Key="Author">Autor</sys:String>
+    <sys:String x:Key="Participant">Participant</sys:String>
+    <!--User Page-->
+    <sys:String x:Key="UserPageHeader">Conferințe și Prezentări</sys:String>
+
+    <sys:String x:Key="ShowButton">Afișează</sys:String>
+    <sys:String x:Key="SingUpButton">Înscrie-te</sys:String>
+    <sys:String x:Key="BrowseButton">Navighează...</sys:String>
+    <sys:String x:Key="CreateButton">Creează</sys:String>
+    <sys:String x:Key="UpdateButton">Actualizează</sys:String>
+    <sys:String x:Key="DeleteButton">Șterge</sys:String>
+</ResourceDictionary>

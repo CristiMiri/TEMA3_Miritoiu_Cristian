@@ -36,7 +36,7 @@ namespace PS_TEMA3.View
         // Getter for the Name TextBox
         public TextBox GetNameTextBox()
         {
-            return this.NumeTextBox;
+            return this.NameTextBox;
         }
 
         // Getter for the Email TextBox
@@ -48,7 +48,7 @@ namespace PS_TEMA3.View
         // Getter for the Password TextBox
         public TextBox GetPasswordTextBox()
         {
-            return this.ParolaTextBox;
+            return this.PasswordTextBox;
         }
 
         // Getter for the User Type ComboBox
@@ -60,13 +60,13 @@ namespace PS_TEMA3.View
         // Getter for the Telephone TextBox
         public TextBox GetTelephoneTextBox()
         {
-            return this.TelefonTextBox;
+            return this.PhoneTextBox;
         }
 
         // Getter for the DataGrid
         public DataGrid GetUsersDataGrid()
         {
-            return this.TabelUtilizatori;
+            return this.UserTable;
         }
 
         //Getter for the Create User Button
@@ -97,9 +97,9 @@ namespace PS_TEMA3.View
             return this.DeleteUserButton;
         }
 
-        public Button getFilterButtonUtilizatori()
+        public Button getFilterUsersButton()
         {
-            return this.FilterButtonUtilizatori;
+            return this.FilterUsersButton;
         }
 
         public void ShowMessage(String message)

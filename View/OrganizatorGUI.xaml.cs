@@ -1,4 +1,5 @@
 ﻿using PS_TEMA3.Controller;
+using PS_TEMA3.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,60 +28,106 @@ namespace PS_TEMA3.View
             OrganizatorController organizatorController = new OrganizatorController(this);
         }
 
-        public TextBox GetTitluTextBox()
-        {
-            return this.TitluTextBox;
-        }
 
-        public TextBox GetAutorTextBox()
+        //Presentation Management Section
+        public TextBlock GetIdPresentationTextBox()
         {
-            return this.AutorTextBox;
+            return this.IdPrezentare;
         }
-
-        public TextBox GetDescriereTextBox()
+        public TextBox GetTitleTextBox()
         {
-            return this.DescriereTextBox;
+            return this.TitleTextBox;
         }
-
+        public TextBox GetAuthorTextBox()
+        {
+            return this.AuthorTextBox;
+        }
+        public TextBox GetDescritionTextBox()
+        {
+            return this.DescriptionTextBox;
+        }
         public DatePicker GetDataDatePicker()
         {
             return this.DataDatePicker;
         }
-
-        public TextBox GetOraTextBox()
+        public TextBox GetTimeTextBox()
         {
-            return this.OraTextBox;
+            return this.TimeTextBox;
+        }        
+        public ComboBox getSectionComboBox()
+        {
+            return this.SectionComboBox;
         }
 
-        public ComboBox GetComboBoxSectiuneAdministrare()
+        public Button getCreatePresentationButton()
         {
-            return this.ComboBoxSectiuneAdministrare;
+            return this.CreatePresentationButton;
+        }
+        public Button getDeletePresentationButton()
+        {
+            return this.DeletePresentationButton;
+        }
+        public Button getUpdatePresentationButton()
+        {
+            return this.UpdatePresentationButton;
+        }
+        public Button GetFilterPresenationButton()
+        {
+            return this.FilterPrezentariButton;
         }
 
-        public TextBox GetIdConferintaTextBox()
+        //Participant Management Section
+        public TextBox GetIdParticipantTextBox()
         {
-            return this.IdConferintaTextBox;
+            return this.IdParticipantTextBox;
         }
-
-        public TextBox getNumeParticipantiTextBox()
+        public TextBox GetNameTextBox()
         {
-            return this.NumeTextBox;
+            return this.NameTextBox;
         }
-
-        public TextBox getEmailParticipantiTextBox()
+        public TextBox GetEmailTextBox()
         {
             return this.EmailTextBox;
         }
-
-        public TextBox getTelefonParticipantiTextBox()
+        public TextBox GetPhoneTextBox()
         {
-            return this.TelefonTextBox;
+            return this.PhoneTextBox;
+        }
+        public TextBox GetPinTextBox()
+        {
+            return this.PinTextBox;
+        }
+        public TextBox GetPhotoPathTextBox()
+        {
+            return this.PhotoPathTextBox;
+        }
+        public TextBox GetDocumentPathTextBox()
+        {
+            return this.DocumentPathTextBox;
         }
 
-        public TextBox getIdPrezentareVizitataTextBox()
+        public Button getCreateParticipantButton()
         {
-            return this.IdPrezentareTextBox;
+            return this.CreateParticipantButton;
         }
+        public Button getDeleteParticipantButton()
+        {
+            return this.DeleteParticipantButton;
+        }
+        public Button getUpdateParticipantButton()
+        {
+            return this.UpdateParticipantButton;
+        }
+        public Button getAcceptParticipantButton()
+        {
+            return this.AcceptParticipantButton;
+        }
+
+        public Button getRejectParticipantButton()
+        {
+            return this.RejectParticipantButton;
+        }
+
 
 
         // Similarly, add getters for other controls, including buttons and DataGrids
@@ -95,9 +142,9 @@ namespace PS_TEMA3.View
             return this.TabelParticipanti;
         }
 
-        public ComboBox getComboBoxFilterParticipanti()
+        public ComboBox GetFilterParticipantsComboBox()
         {
-            return this.ComboBoxFilterParticipanti;
+            return this.FilterParticipantsComboBox;
         }
         // Getters for buttons if needed
 
@@ -116,9 +163,9 @@ namespace PS_TEMA3.View
             return this.BackButton;
         }
 
-        public Button getFilterButtonParticipanti()
+        public Button getFilterParticipantsButton()
         {
-            return this.FilterButtonParticipanti;
+            return this.FilterParticipantButton;
         }
 
         public Button getFilterPrezentariButton()
@@ -131,15 +178,34 @@ namespace PS_TEMA3.View
             return this.DownloadButton;
         }
 
-        public Button getAcceptButton()
+
+        //Statistics Section
+
+        public Button getShowRingChartButton()
         {
-            return this.AcceptParticipantButton;
+            return this.ShowRingChartButton;
+        }
+        public Button getShowLineChartDialogButton()
+        {
+            return this.ShowLineChartDialogButton;
+        }
+        public Button getShowPresentationsByAuthorChartButton()
+        {
+            return this.ShowPresentationsByAuthorChartButton;
+        }
+        public Button getShowPresentationsPerDayChartButton()
+        {
+            return this.ShowPresentationsPerDayChartButton;
+        }
+        public Button getShowParticipantsBySectionChartButton()
+        {
+            return this.ShowParticipantsBySectionChartButton;
+        }
+        public Button getShowParticipantsByConferenceChartButton()
+        {
+            return this.ShowParticipantsByConferenceChartButton;
         }
 
-        public Button getRejectButton()
-        {
-            return this.RejectParticipantButton;
-        }
     }
 
 }

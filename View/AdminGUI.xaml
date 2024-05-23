@@ -19,9 +19,10 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- Form -->
-            <Expander Header="Administrare Utilizatori" IsExpanded="True" Margin="10" Grid.Row="0"
-                  x:Name="Administrare" Style="{StaticResource ExpanderBaseStyle}">
+            
+            <!-- Form section : row 0 -->
+            <Expander Header="{DynamicResource AdminPageTitle}" IsExpanded="True" Margin="10" Grid.Row="0"
+                  x:Name="AdministrationExpander" Style="{StaticResource ExpanderBaseStyle}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -45,46 +46,45 @@
                     <TextBox x:Name="IdTextBox" Margin="0,5,10,5" Grid.Column="1" Grid.Row="0" Visibility="Hidden" Style="{StaticResource InputControlStyle}"                    />
 
                     <!-- Name -->
-                    <Label Content="Name:" Grid.Column="0" Grid.Row="1" Style="{StaticResource LabelBaseStyle}"/>
-                    <TextBox x:Name="NumeTextBox" Margin="0,5,10,5" Grid.Column="1" Grid.Row="1" Style="{StaticResource InputControlStyle}"
+                    <Label Content="{DynamicResource NameLabel}" Grid.Column="0" Grid.Row="1" Style="{StaticResource LabelBaseStyle}"/>
+                    <TextBox x:Name="NameTextBox" Margin="0,5,10,5" Grid.Column="1" Grid.Row="1" Style="{StaticResource InputControlStyle}"
                          />
 
                     <!-- Email -->
-                    <Label Content="Email:" Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelBaseStyle}"/>
-                    <TextBox x:Name="EmailTextBox" Margin="0,5,10,5" Grid.Column="1" Grid.Row="2" Style="{StaticResource InputControlStyle}"
-                        />
+                    <Label Content="{DynamicResource EmailLabel}" Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelBaseStyle}"/>
+                    <TextBox x:Name="EmailTextBox" Margin="0,5,10,5" Grid.Column="1" Grid.Row="2" Style="{StaticResource InputControlStyle}"/>
 
                     <!-- Password -->
-                    <Label Content="Password:" Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelBaseStyle}"/>
-                    <TextBox x:Name="ParolaTextBox" Margin="0,5,10,5" Grid.Column="1" Grid.Row="3" Style="{StaticResource InputControlStyle}"
-                         />
+                    <Label Content="{DynamicResource PasswordLabel}" Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelBaseStyle}"/>
+                    <TextBox x:Name="PasswordTextBox" Margin="0,5,10,5" Grid.Column="1" Grid.Row="3" Style="{StaticResource InputControlStyle}"/>
 
                     <!-- User Type -->
-                    <Label Content="User Type:" Grid.Column="0" Grid.Row="4" Style="{StaticResource LabelBaseStyle}"/>
+                    <Label Content="{DynamicResource UserTypeLabel}" Grid.Column="0" Grid.Row="4" Style="{StaticResource LabelBaseStyle}"/>
                     <ComboBox x:Name="UserTypeComboBox" Margin="0,5,10,5" Grid.Column="1" Grid.Row="4" 
                               Style="{StaticResource ComboBoxBaseStyle}" HorizontalAlignment="Center" Width="200"                            
                               />
 
 
                     <!-- Telephone -->
-                    <Label Content="Telephone:" Grid.Column="0" Grid.Row="5" Style="{StaticResource LabelBaseStyle}"/>
-                    <TextBox x:Name="TelefonTextBox" Margin="0,5,10,5" Grid.Column="1" Grid.Row="5" Style="{StaticResource InputControlStyle}"
+                    <Label Content="{DynamicResource PhoneLabel}" Grid.Column="0" Grid.Row="5" Style="{StaticResource LabelBaseStyle}"/>
+                    <TextBox x:Name="PhoneTextBox" Margin="0,5,10,5" Grid.Column="1" Grid.Row="5" Style="{StaticResource InputControlStyle}"
                          />
 
                     <!-- Buttons -->
                     <WrapPanel Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" >
-                        <Button x:Name="CreateUserButton" Content="Create User"  Width="100" Style="{StaticResource ButtonBaseStyle}" HorizontalAlignment="Left"   
+                        <Button x:Name="CreateUserButton" Content="{DynamicResource CreateUserButton}"  Width="150" Style="{StaticResource ButtonBaseStyle}" HorizontalAlignment="Left"   
                                 />
-                        <Button x:Name="UpdateUserButton" Content="Update User"  Width="100" Style="{StaticResource ButtonBaseStyle}" HorizontalAlignment="Right"
+                        <Button x:Name="UpdateUserButton" Content="{DynamicResource UpdateUserButton}"  Width="150" Style="{StaticResource ButtonBaseStyle}" HorizontalAlignment="Right"
                                 />
                     </WrapPanel>
 
                     <WrapPanel Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="1" HorizontalAlignment="Center">
-                        <Button x:Name="DeleteUserButton" Content="Delete User" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="1" Width="100" Style="{StaticResource ButtonBaseStyle}"
+                        <Button x:Name="DeleteUserButton" Content="{DynamicResource DeleteUserButton}" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="1" Width="150" Style="{StaticResource ButtonBaseStyle}"
                         HorizontalAlignment="Stretch"
+                                
                         />
-                        
-                        <Button x:Name="BackButton" Content="Back" Grid.Column="1" HorizontalAlignment="Right" Width="100"                        
+
+                        <Button x:Name="BackButton" Content="{DynamicResource BackButton}" Grid.Column="1" HorizontalAlignment="Right" Width="100"                        
                         Style="{StaticResource ButtonBaseStyle}"
                         />
                     </WrapPanel>
@@ -94,6 +94,8 @@
 
             </Expander>
 
+            
+            <!--Filter section : row 1-->
             <Border Grid.Row="1" Style="{StaticResource DefaultBorderStyle}">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -101,37 +103,31 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="Filtrare Utilizatori" Style="{StaticResource LabelBaseStyle}" Grid.Column="0"/>
+                    <Label Content="{DynamicResource FilterUsersLabel}"  Style="{StaticResource LabelBaseStyle}" Grid.Column="0"/>
                     <ComboBox x:Name="ComboBoxUserType" Grid.Column="1"   
                           Style="{StaticResource ComboBoxBaseStyle}"
                           />
-                    <Button x:Name="FilterButtonUtilizatori" Content="Afisare Utilizatori"  Grid.Column="2" 
+                    <Button x:Name="FilterUsersButton" Content="{DynamicResource FilterUsersButton}"  Grid.Column="2" 
                             Style="{StaticResource ButtonBaseStyle}" Width="150"
                             />
                 </Grid>
             </Border>
 
             <!-- DataGrid -->
-            <DataGrid Grid.Row="2" x:Name="TabelUtilizatori" Style="{StaticResource DataGridBaseStyle}">
+            <DataGrid Grid.Row="2" x:Name="UserTable" Style="{StaticResource DataGridBaseStyle}">
                 <DataGrid.ColumnHeaderStyle>
                     <StaticResource ResourceKey="DataGridColumnHeaderStyle"/>
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*" />
-                    <DataGridTextColumn Header="Nume" Binding="{Binding Nume}" Width="*"/>
-                    <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
-                    <DataGridTextColumn Header="UserType" Binding="{Binding UserType}" Width="*"/>
-                    <DataGridTextColumn Header="Telefon" Binding="{Binding Telefon}" Width="*"/>
-                    <DataGridTextColumn Header="Password" Binding="{Binding Parola}" Width="*"/>
+                    <DataGridTextColumn Header="{DynamicResource IdHeader}" Binding="{Binding Id}" Width="*" />
+                    <DataGridTextColumn Header="{DynamicResource NameHeader}" Binding="{Binding Name}" Width="*"/>
+                    <DataGridTextColumn Header="{DynamicResource EmailHeader}" Binding="{Binding Email}" Width="*"/>
+                    <DataGridTextColumn Header="{DynamicResource UserTypeHeader}" Binding="{Binding UserType}" Width="*"/>
+                    <DataGridTextColumn Header="{DynamicResource PhoneHeader}" Binding="{Binding Phone}" Width="*"/>
+                    <DataGridTextColumn Header="{DynamicResource PasswordHeader}" Binding="{Binding Password}" Width="*"/>
                 </DataGrid.Columns>
+
             </DataGrid>
-            
-        <!--<TextBlock Grid.Row="1" 
-        Text="Utilizatori" 
-        FontSize="20" 
-        FontWeight="Bold" 
-        Margin="0,15,0,0" 
-        Style="{StaticResource HeaderTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Top"/>-->
         </Grid>
     </ScrollViewer>
 </Page>

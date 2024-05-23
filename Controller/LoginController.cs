@@ -13,69 +13,86 @@ namespace PS_TEMA3.Controller
 {
     internal class LoginController
     {
-        private LoginGUI loginGUI;
-        private UtilizatorRepository utilizatorRepository;
+        private readonly LoginGUI _loginGUI;
+        private readonly UserRepository _userRepository;
+
 
         public LoginController(LoginGUI loginGUI)
         {
-            this.loginGUI = loginGUI;
-            utilizatorRepository = new UtilizatorRepository();
+            _loginGUI = loginGUI;
+            _userRepository = new UserRepository();
 
-            //Buttons
-            loginGUI.GetLoginButton().Click += new RoutedEventHandler(Login);
-            loginGUI.GetBackButton().Click += new RoutedEventHandler(Back);
+            InitializeEvents();
         }
 
-        private Utilizator? ValidUtilizatorData()
+        //Auxiliary methods
+        private void InitializeEvents()
         {
-            string email = loginGUI.GetEmailTextBox().Text;
-            string password = loginGUI.GetPasswordTextBox().Text;
-            if (String.IsNullOrEmpty(email) || String.IsNullOrEmpty(password))
+            _loginGUI.GetLoginButton().Click += Login;
+            _loginGUI.GetBackButton().Click += Back;
+        }
+        private User? ValidateUserData()
+        {
+            string email = _loginGUI.GetEmailTextBox().Text;
+            string password = _loginGUI.GetPasswordTextBox().Text;
+
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
             {
-                loginGUI.ShowError("Email and password are required!");
+                _loginGUI.ShowError("Email and password are required!");
                 return null;
             }
-            return new Utilizator(email, password);
+
+            return new User(email, password);
+        }
+        private void NavigateToUserPage(User user)
+        {
+            switch (user.UserType)
+            {
+                case UserType.ADMINISTRATOR:
+                    ShowPage(new AdminGUI());
+                    break;
+                case UserType.PARTICIPANT:
+                    ShowPage(new UtilizatorGUI());
+                    break;
+                case UserType.ORGANIZER:
+                    ShowPage(new OrganizatorGUI());
+                    break;
+                default:
+                    _loginGUI.ShowError("Invalid user type!");
+                    break;
+            }
         }
 
+        //Navigation methods
         private void Login(object sender, RoutedEventArgs e)
         {
             try
             {
-                Utilizator utilizator = ValidUtilizatorData();
-                if (utilizator != null)
+                User? user = ValidateUserData();
+                if (user != null)
                 {
-                    utilizator = utilizatorRepository.ReadUtilizatorbyEmailandParola(utilizator.Email, utilizator.Parola);
-                    switch (utilizator.UserType)
+                    User? authenticatedUser = _userRepository.ReadUserByEmailAndPassword(user.Email, user.Password);
+                    if (authenticatedUser != null)
                     {
-                        case UserType.ADMINISTRATOR:
-                            //Navigate to AdminGUI
-                            showPage(new AdminGUI());
-                            break;
-                        case UserType.PARTICIPANT:
-                            //Navigate to UserGUI
-                            showPage(new UtilizatorGUI());
-                            break;
-                        case UserType.ORGANIZATOR:
-                            showPage(new OrganizatorGUI());
-                            break;
-                        default:
-                            loginGUI.ShowError("Invalid email or password!");
-                            break;
+                        NavigateToUserPage(authenticatedUser);
+                    }
+                    else
+                    {
+                        _loginGUI.ShowError("Invalid email or password!");
                     }
                 }
             }
             catch (Exception ex)
             {
-                loginGUI.ShowError("Invalid email or password!");
+                // Log the exception if logging is set up, e.g., using a logging framework.
+                _loginGUI.ShowError("An error occurred during login. Please try again.");
             }
-        }
-
+        }        
         private void Back(object sender, RoutedEventArgs e)
         {
-            showPage(new HomeGUI());
+            ShowPage(new HomeGUI());
         }
-        private void showPage(Page page)
+        private void ShowPage(Page page)
         {
             Application.Current.MainWindow.Content = page;
         }

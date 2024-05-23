@@ -35,7 +35,7 @@ namespace PS_TEMA3.View
 
         public DataGrid GetTabelConferinte()
         {
-            return this.TabelConferinte;
+            return this.ConferenceTable;
         }
     }
 
