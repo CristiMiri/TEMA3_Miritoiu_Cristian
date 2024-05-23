@@ -3,6 +3,7 @@ using PS_TEMA3.Model.Repository;
 using PS_TEMA3.View;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,21 +12,49 @@ using System.Windows.Controls;
 
 namespace PS_TEMA3.Controller
 {
-    internal class AdminController
+    internal class AdminController :IObserver
     {
+        public ObservableCollection<User> Users { get; set; }
+        private readonly Subject _subject;
         private UserRepository utilizatorRepository;
         private AdminGUI _adminGUI;
 
-        public AdminController(AdminGUI adminGUI)
+        public AdminController(AdminGUI adminGUI, Subject subject)
         {
             utilizatorRepository = new UserRepository();
             this._adminGUI = adminGUI;
             InitializeEvents();
             InitializeUserTypeComboBox();
+            _adminGUI.GetUserTypeComboBox().ItemsSource = Enum.GetValues(typeof(UserType));            
+            _subject = subject;
+            Users = new ObservableCollection<User>(utilizatorRepository.ReadUsers());
+            _subject.Attach(this);
             LoadUsersTable();
-            _adminGUI.GetUserTypeComboBox().ItemsSource = Enum.GetValues(typeof(UserType));
         }
+
+
         //Auxiliary methods
+        public void AddUser(User user)
+        {
+            Users.Add(user);
+            _subject.Notify();
+        }
+        public void UpdateUser(User user)
+        {
+            int index = Users.IndexOf(Users.FirstOrDefault(x => x.Id == user.Id));
+            Users[index] = user;
+            _subject.Notify();
+        }
+
+        public void RemoveUser(User user)
+        {
+            Users.Remove(user);
+            _subject.Notify();
+        }
+        public void Update()
+        {
+            LoadUsersTable();
+        }
         private void InitializeEvents()
         {
             _adminGUI.GetCreateUserButton().Click += CreateUser;
@@ -83,14 +112,14 @@ namespace PS_TEMA3.Controller
                 if(utilizatorRepository.CreateUser(createUser))
                     _adminGUI.ShowMessage("Utilizatorul a fost adaugat cu succes!");
                 else
-                    _adminGUI.ShowMessage("Nu sa putut adauga utilizatorul!");
+                    _adminGUI.ShowMessage("Nu sa putut adauga utilizatorul!");                
             }
-            this.LoadUsersTable();
+            AddUser(createUser);
             this.ClearFields();
         }
         private void LoadUsersTable()
         {
-            _adminGUI.GetUsersDataGrid().ItemsSource = utilizatorRepository.ReadUsers();
+            _adminGUI.GetUsersDataGrid().ItemsSource = Users;
         }
         private void UpdateUser(object sender, EventArgs e)
         {
@@ -98,9 +127,9 @@ namespace PS_TEMA3.Controller
             if (updateUser != null)
             {
                 utilizatorRepository.UpdateUser(updateUser);
+                this.UpdateUser(updateUser);
                 _adminGUI.ShowMessage("Utilizatorul a fost actualizat cu succes!");
-            }
-            this.LoadUsersTable();
+            }            
             this.ClearFields();
         }
         private void DeleteUser(object sender, EventArgs e)
@@ -111,7 +140,7 @@ namespace PS_TEMA3.Controller
                 utilizatorRepository.DeleteUser(deleteUser.Id);
                 _adminGUI.ShowMessage("Utilizatorul a fost sters cu succes!");
             }
-            this.LoadUsersTable();
+            RemoveUser(deleteUser);
             this.ClearFields();
         }
         private void SelectUser(object sender, EventArgs e)
@@ -144,7 +173,8 @@ namespace PS_TEMA3.Controller
         //Navigation methods
         private void Back(object sender, EventArgs e)
         {
-            Application.Current.MainWindow.Content = new HomeGUI();
+            //Application.Current.MainWindow.Content = new HomeGUI();
+            this._adminGUI.Close();
         }
 
     }

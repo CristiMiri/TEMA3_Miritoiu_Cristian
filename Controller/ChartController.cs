@@ -86,7 +86,7 @@ namespace PS_TEMA3.Controller
         {
             var data = statisticsRepository.GetNumberOfParticipantsBySection();
 
-            var seriesCollection = new SeriesCollection();
+            SeriesCollection seriesCollection = [];
             foreach (var item in data)
             {
                 seriesCollection.Add(new PieSeries
@@ -101,8 +101,8 @@ namespace PS_TEMA3.Controller
 
             // Clear existing series to avoid potential issues
 
-
-            pieChart.Series = seriesCollection;
+            pieChart.Series = new SeriesCollection();
+            pieChart.Series.AddRange(seriesCollection);
         }
 
         public void SetupLineChart()

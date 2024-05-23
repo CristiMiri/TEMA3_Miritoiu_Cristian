@@ -91,7 +91,8 @@ namespace PS_TEMA3.Controller
 
         private void Back(object sender, EventArgs e)
         {
-            Application.Current.MainWindow.Content = new HomeGUI();
+            //Application.Current.MainWindow.Content = new HomeGUI();
+            this._utilizatorGUI.Close();
         }
     }
 }

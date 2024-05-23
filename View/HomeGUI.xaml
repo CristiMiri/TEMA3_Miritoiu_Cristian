@@ -26,13 +26,18 @@
                 <TextBlock Text="Conference Application" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="10" Style="{DynamicResource HeaderTextBlockStyle}"/>
 
                 <Button x:Name="loginButton" Content="Login" Margin="450,10,10,10" HorizontalAlignment="Right" 
-                    Command="{Binding Path=LoginCommand}"
+                    Command="{Binding Path=LoginCommand}" MinWidth="100"
                     CommandParameter="Login"
                     Style="{DynamicResource ButtonBaseStyle}"/>
-                <Button x:Name="EnglishButton" Content="EN"                                         
+                <Button x:Name="EnglishButton" Content="EN" MinWidth="100"                                   
                     Style="{DynamicResource ButtonBaseStyle}"/>
-                <Button x:Name="RomanianButton" Content="RO"                                         
+                <Button x:Name="RomanianButton" Content="RO" Visibility="Hidden"                           
                     Style="{DynamicResource ButtonBaseStyle}"/>
+                <Button x:Name="FrenchButton" Content="FR" MinWidth="100"                                         
+                    Style="{DynamicResource ButtonBaseStyle}"/>
+                <Button x:Name="SpanishButton" Content="SP" MinWidth="100"                                         
+                    Style="{DynamicResource ButtonBaseStyle}"/>
+                
             </StackPanel>
             
             

@@ -16,11 +16,14 @@ using System.Net.Mail;
 using System.Net;
 using System.Windows.Controls;
 using Section = PS_TEMA3.Model.Section;
+using System.Collections.ObjectModel;
 
 namespace PS_TEMA3.Controller
 {
-    internal class OrganizatorController
+    internal class OrganizatorController: IObserver
     {
+        public ObservableCollection<Presentation> Presentations { get; set; }
+        private Subject _subject;
         private OrganizatorGUI organizatorGUI;
         private ParticipantRepository participantiRepository;
         private PresentationRepository prezentareRepository;
@@ -29,7 +32,7 @@ namespace PS_TEMA3.Controller
         private EmailSender emailSender = new EmailSender();
         private FileManager fileManager = new FileManager();
 
-        public OrganizatorController(OrganizatorGUI organizatorGUI)
+        public OrganizatorController(OrganizatorGUI organizatorGUI, Subject subject)
         {
             this.organizatorGUI = organizatorGUI;
             participantiRepository = new ParticipantRepository();
@@ -40,9 +43,36 @@ namespace PS_TEMA3.Controller
             LoadPresentationTable();
             fillComboBox();
             InitializeEvents();
+            Presentations = new ObservableCollection<Presentation>(prezentareRepository.ReadPresentations());
+            _subject = subject;
+            _subject.Attach(this);
         }
 
         //Auxiliary methods
+        public void AddPresentation(Presentation presentation)
+        {
+            Presentations.Add(presentation);
+            _subject.Notify();
+        }
+
+        public void RemovePresentation(Presentation presentation)
+        {
+            Presentations.Remove(presentation);
+            _subject.Notify();
+        }
+
+        public void UpdatePresentation(Presentation presentation)
+        {
+            Presentations[Presentations.IndexOf(Presentations.First(p => p.Id == presentation.Id))] = presentation;
+            _subject.Notify();
+        }
+
+        public void Update()
+        {
+            LoadPresentationTable();
+        }
+
+
         private void InitializeEvents()
         {
             //Presentation Management Section
@@ -131,7 +161,8 @@ namespace PS_TEMA3.Controller
 
         private void Back(object sender, EventArgs e)
         {
-            System.Windows.Application.Current.MainWindow.Content = new HomeGUI();
+            //System.Windows.Application.Current.MainWindow.Content = new HomeGUI();
+            this.organizatorGUI.Close();
         }
 
     //Presentation Management Section
@@ -227,7 +258,7 @@ namespace PS_TEMA3.Controller
                 if (result)
                 {
                     MessageBox.Show("Prezentare adaugata cu succes!");
-                    LoadPresentationTable();
+                    AddPresentation(presentation);
                     ClearPresentationFields();
                 }
             }
@@ -241,7 +272,7 @@ namespace PS_TEMA3.Controller
                 if (result)
                 {
                     MessageBox.Show("Prezentare actualizata cu succes!");
-                    LoadPresentationTable();
+                    UpdatePresentation(presentation);
                     ClearPresentationFields();
                 }
             }
@@ -251,7 +282,7 @@ namespace PS_TEMA3.Controller
             int id = Convert.ToInt32(organizatorGUI.GetIdPresentationTextBox().Text);
             prezentareRepository.DeletePresentation(id);
             MessageBox.Show("Prezentare stearsa cu succes!");
-            LoadPresentationTable();
+            RemovePresentation(Presentations.First(p => p.Id == id));
             ClearPresentationFields();
         }
 
@@ -410,24 +441,28 @@ namespace PS_TEMA3.Controller
         {
             ChartView chartDialog = new ChartView();
             chartDialog.ShowParticipantsByConferenceChart();
+            chartDialog.ShowDialog();
         }
 
         private void ShowParticipantsBySectionChart(object sender, EventArgs e)
         {
             ChartView chartDialog = new ChartView();
             chartDialog.ShowParticipantsBySectionChart();
+            chartDialog.ShowDialog();
         }
 
         private void ShowPresentationsByAuthorChart(object sender, EventArgs e)
         {
             ChartView chartDialog = new ChartView();
             chartDialog.ShowPresentationsByAuthorChart();
+            chartDialog.ShowDialog();
         }
 
         private void ShowPresentationsPerDayChart(object sender, EventArgs e)
         {
             ChartView chartDialog = new ChartView();
             chartDialog.ShowPresentationsPerDayChart();
+            chartDialog.ShowDialog();
         }
 
         private void ShowChartsButton_Click(object sender, EventArgs e)
@@ -440,12 +475,14 @@ namespace PS_TEMA3.Controller
         {
             ChartView chartDialog = new ChartView();
             chartDialog.ShowLineChart();
+            chartDialog.ShowDialog();
         }
 
         private void ShowRingChart(object sender, EventArgs e)
         {
             ChartView chartDialog = new ChartView();
             chartDialog.ShowRingChart();
+            chartDialog.ShowDialog();
         }
 
 

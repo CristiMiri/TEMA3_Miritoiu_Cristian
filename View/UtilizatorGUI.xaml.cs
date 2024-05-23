@@ -19,7 +19,7 @@ namespace PS_TEMA3.View
     /// <summary>
     /// Interaction logic for UtilizatorGUI.xaml
     /// </summary>
-    public partial class UtilizatorGUI : Page
+    public partial class UtilizatorGUI : Window
     {
         public UtilizatorGUI()
         {

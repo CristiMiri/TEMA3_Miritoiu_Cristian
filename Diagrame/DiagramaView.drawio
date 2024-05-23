@@ -1,0 +1,265 @@
+<mxfile host="app.diagrams.net" modified="2024-05-23T09:36:43.470Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0" etag="nLLZxHbdKdSfmqPP-jlg" version="24.4.6" type="device">
+  <diagram name="Page-1" id="9nsHfYy7XWXrO_lWCYFM">
+    <mxGraphModel dx="2896" dy="1218" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-1" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;View&lt;/font&gt;" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;verticalAlign=top;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="107" y="70" width="1031" height="1043" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-2" value="AdminGUI" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+          <mxGeometry x="132" y="130" width="328" height="970" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-3" value="-UserTable: DataGrid" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="26" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-4" value="-CreateUserButton: Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="52" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-5" value="-UpdateUserButton: Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="78" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-6" value="-DeleteUserButton: Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="104" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-7" value="-SearchButton: Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="130" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-8" value="-LogOutButton: Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="156" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-9" value="-RefreshButton: Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="182" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-10" value="-ExportPDFButton: Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="208" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-11" value="-DownloadButton: Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="234" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-12" value="-ShowRingChartButton: Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="260" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-13" value="-ShowLineChartDialogButton: Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="286" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-14" value="-ShowPresentationsByAuthorChartButton: Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="312" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-15" value="-ShowPresentationsPerDayChartButton: Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="338" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-16" value="-ShowParticipantsBySectionChartButton: Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="364" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-17" value="-ShowParticipantsByConferenceChartButton: Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="390" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-18" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="416" width="328" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-19" value="+GetIdTextBox(): TextBox" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="424" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-20" value="+GetNameTextBox(): TextBox" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="450" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-21" value="+GetEmailTextBox(): TextBox" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="476" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-22" value="+GetPasswordTextBox(): TextBox" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="502" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-23" value="+GetUserTypeComboBox(): ComboBox" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="528" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-24" value="+GetTelephoneTextBox(): TextBox" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="554" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-25" value="+GetUsersDataGrid(): DataGrid" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="580" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-26" value="+GetCreateUserButton(): Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="606" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-27" value="+GetUpdateUserButton(): Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="632" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-28" value="+GetDeleteUserButton(): Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="658" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-29" value="+GetSearchButton(): Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="684" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-30" value="+GetLogOutButton(): Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="710" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-31" value="+GetRefreshButton(): Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="736" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-32" value="+GetExportPDFButton(): Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="762" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-33" value="+GetDownloadButton(): Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="788" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-34" value="+getShowRingChartButton(): Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="814" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-35" value="+getShowLineChartDialogButton(): Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="840" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-36" value="+getShowPresentationsByAuthorChartButton(): Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="866" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-37" value="+getShowPresentationsPerDayChartButton(): Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="892" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-38" value="+getShowParticipantsBySectionChartButton(): Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="918" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-39" value="+getShowParticipantsByConferenceChartButton(): Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-2">
+          <mxGeometry y="944" width="328" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-40" value="ChartView" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+          <mxGeometry x="511" y="130" width="264" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-41" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-40">
+          <mxGeometry y="26" width="264" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-42" value="+ShowRingChart(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-40">
+          <mxGeometry y="34" width="264" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-43" value="+ShowLineChartDialog(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-40">
+          <mxGeometry y="60" width="264" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-44" value="+ShowPresentationsByAuthorChart(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-40">
+          <mxGeometry y="86" width="264" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-45" value="+ShowPresentationsPerDayChart(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-40">
+          <mxGeometry y="112" width="264" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-46" value="+ShowParticipantsBySectionChart(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-40">
+          <mxGeometry y="138" width="264" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-47" value="+ShowParticipantsByConferenceChart(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-40">
+          <mxGeometry y="164" width="264" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-48" value="HomeGUI" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+          <mxGeometry x="511" y="366" width="195" height="242" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-49" value="-LoginButton: Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-48">
+          <mxGeometry y="26" width="195" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-50" value="-AdminButton: Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-48">
+          <mxGeometry y="52" width="195" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-51" value="-OrganizatorButton: Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-48">
+          <mxGeometry y="78" width="195" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-52" value="-UserButton: Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-48">
+          <mxGeometry y="104" width="195" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-53" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-48">
+          <mxGeometry y="130" width="195" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-54" value="+GetLoginButton(): Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-48">
+          <mxGeometry y="138" width="195" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-55" value="+GetAdminButton(): Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-48">
+          <mxGeometry y="164" width="195" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-56" value="+GetOrganizatorButton(): Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-48">
+          <mxGeometry y="190" width="195" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-57" value="+GetUserButton(): Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-48">
+          <mxGeometry y="216" width="195" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-58" value="LoginGUI" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+          <mxGeometry x="849" y="511" width="232" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-59" value="-EmailTextBox: TextBox" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-58">
+          <mxGeometry y="26" width="232" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-60" value="-PasswordTextBox: PasswordBox" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-58">
+          <mxGeometry y="52" width="232" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-61" value="-LoginButton: Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-58">
+          <mxGeometry y="78" width="232" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-62" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-58">
+          <mxGeometry y="104" width="232" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-63" value="+GetEmailTextBox(): TextBox" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-58">
+          <mxGeometry y="112" width="232" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-64" value="+GetPasswordTextBox(): PasswordBox" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-58">
+          <mxGeometry y="138" width="232" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-65" value="+GetLoginButton(): Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-58">
+          <mxGeometry y="164" width="232" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-66" value="OrganizatorGUI" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+          <mxGeometry x="849" y="130" width="233" height="346" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-67" value="-CreateConferenceButton: Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-66">
+          <mxGeometry y="26" width="233" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-68" value="-UpdateConferenceButton: Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-66">
+          <mxGeometry y="52" width="233" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-69" value="-DeleteConferenceButton: Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-66">
+          <mxGeometry y="78" width="233" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-70" value="-SearchConferenceButton: Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-66">
+          <mxGeometry y="104" width="233" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-71" value="-LogOutButton: Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-66">
+          <mxGeometry y="130" width="233" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-72" value="-ConferenceTable: DataGrid" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-66">
+          <mxGeometry y="156" width="233" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-73" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-66">
+          <mxGeometry y="182" width="233" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-74" value="+GetCreateConferenceButton(): Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-66">
+          <mxGeometry y="190" width="233" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-75" value="+GetUpdateConferenceButton(): Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-66">
+          <mxGeometry y="216" width="233" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-76" value="+GetDeleteConferenceButton(): Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-66">
+          <mxGeometry y="242" width="233" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-77" value="+GetSearchConferenceButton(): Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-66">
+          <mxGeometry y="268" width="233" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-78" value="+GetLogOutButton(): Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-66">
+          <mxGeometry y="294" width="233" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-79" value="+GetConferenceTable(): DataGrid" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-66">
+          <mxGeometry y="320" width="233" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-80" value="UtilizatorGUI" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+          <mxGeometry x="511" y="644" width="195" height="138" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-81" value="-BackButton: Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-80">
+          <mxGeometry y="26" width="195" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-82" value="-ConferenceTable: DataGrid" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-80">
+          <mxGeometry y="52" width="195" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-83" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-80">
+          <mxGeometry y="78" width="195" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-84" value="+GetBackButton(): Button" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-80">
+          <mxGeometry y="86" width="195" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="-VDAmTzNi49HNhKbfUMx-85" value="+GetTabelConferinte(): DataGrid" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="-VDAmTzNi49HNhKbfUMx-80">
+          <mxGeometry y="112" width="195" height="26" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

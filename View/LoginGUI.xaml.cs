@@ -1,4 +1,5 @@
 ﻿using PS_TEMA3.Controller;
+using PS_TEMA3.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,12 +20,13 @@ namespace PS_TEMA3.View
     /// <summary>
     /// Interaction logic for LoginGUI.xaml
     /// </summary>
-    public partial class LoginGUI : Page
+    public partial class LoginGUI : Window
     {
-        public LoginGUI()
+        public LoginGUI(Subject subject)
         {
             InitializeComponent();
-            LoginController loginController = new LoginController(this);
+
+            LoginController loginController = new LoginController(this,subject);
         }
 
         public TextBox GetEmailTextBox()
@@ -52,6 +54,8 @@ namespace PS_TEMA3.View
         {
             MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
+
+
     }
 
 }

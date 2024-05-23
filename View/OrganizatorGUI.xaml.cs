@@ -20,12 +20,12 @@ namespace PS_TEMA3.View
     /// <summary>
     /// Interaction logic for OrganizatorGUI.xaml
     /// </summary>
-    public partial class OrganizatorGUI : Page
+    public partial class OrganizatorGUI : Window
     {
-        public OrganizatorGUI()
+        public OrganizatorGUI(Subject subject)
         {
             InitializeComponent();
-            OrganizatorController organizatorController = new OrganizatorController(this);
+            OrganizatorController organizatorController = new OrganizatorController(this,subject);
         }
 
 

@@ -10,8 +10,10 @@ using System.Windows.Controls;
 
 namespace PS_TEMA3.Controller
 {
-    internal class HomeController
+    internal class HomeController:IObserver
     {
+        public ObservableCollection<Presentation> Presentations { get; set; }
+        private readonly Subject _subject;
         private readonly ParticipantRepository _participantRepository;
         private readonly PresentationRepository _presentationRepository;
         private readonly Participant_PrezentareRepository _participantPresentationRepository;
@@ -19,7 +21,7 @@ namespace PS_TEMA3.Controller
         private string _documentsDirectory;
         private readonly HomeGUI _homeGUI;
 
-        public HomeController(HomeGUI homeGUI)
+        public HomeController(HomeGUI homeGUI, Subject subject)
         {
             _homeGUI = homeGUI;
             _participantRepository = new ParticipantRepository();
@@ -28,9 +30,37 @@ namespace PS_TEMA3.Controller
 
             InitializeEvents();
             InitializeDirectories();
-            LoadPresentationsTable();
             InitializePrezentareParticipantComboBox();
             InitializePresentationSectionComboBox();
+            _subject = subject;
+            Presentations = new ObservableCollection<Presentation>(_presentationRepository.ReadPresentations());
+            _subject.Attach(this);
+            LoadPresentationsTable();
+
+        }
+
+        public void AddPresentation(Presentation presentation)
+        {
+            Presentations.Add(presentation);
+            _subject.Notify();
+        }
+
+        public void UpdatePresentation(Presentation presentation)
+        {
+            int index = Presentations.IndexOf(Presentations.FirstOrDefault(x => x.Id == presentation.Id));
+            Presentations[index] = presentation;
+            _subject.Notify();
+        }
+
+        public void RemovePresentation(Presentation presentation)
+        {
+            Presentations.Remove(presentation);
+            _subject.Notify();
+        }
+
+        public void Update()
+        {
+            LoadPresentationsTable();
         }
 
 
@@ -225,6 +255,8 @@ namespace PS_TEMA3.Controller
                         _presentationRepository.CreatePresentation(presentation);
                         _homeGUI.ShowMessage("Presentation created successfully!");
                         ClearFields();
+                        AddPresentation(presentation);
+
                     }
                 }
             }
@@ -460,7 +492,9 @@ namespace PS_TEMA3.Controller
         //Auxiliary functions
         private void Login(object sender, EventArgs e)
         {
-            Application.Current.MainWindow.Content = new LoginGUI();
+            //Application.Current.MainWindow.Content = new LoginGUI();
+            LoginGUI loginGUI = new LoginGUI(_subject);
+            loginGUI.Show();
         }
         private void EnglishButton_Click(object sender, RoutedEventArgs e)
         {
@@ -469,6 +503,14 @@ namespace PS_TEMA3.Controller
         private void RomanianButton_Click(object sender, RoutedEventArgs e)
         {
             (Application.Current as App).ChangeLanguage("ro");
+        }
+        private void FrenchButton_Click(object sender, RoutedEventArgs e)
+        {
+            (Application.Current as App).ChangeLanguage("fr");
+        }
+        private void SpanishButton_Click(object sender, RoutedEventArgs e)
+        {
+            (Application.Current as App).ChangeLanguage("es");
         }
     }
 }

@@ -23,10 +23,10 @@ namespace PS_TEMA3.View
     public partial class HomeGUI : Page
     {
         private HomeController homeController;
-        public HomeGUI()
+        public HomeGUI(Subject subject)
         {
-            InitializeComponent();
-            homeController = new HomeController(this);
+            InitializeComponent();            
+            homeController = new HomeController(this,subject);
 
         }
 
@@ -152,6 +152,16 @@ namespace PS_TEMA3.View
         public Button getEnglishButton()
         {
             return this.EnglishButton;
+        }
+
+        public Button GetSpanishButton()
+        {
+            return this.SpanishButton;
+        }
+
+        public Button GetFrenchButton()
+        {
+            return this.FrenchButton;
         }
 
         //Filter fields

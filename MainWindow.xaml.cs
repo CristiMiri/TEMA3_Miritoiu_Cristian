@@ -1,4 +1,5 @@
-﻿using PS_TEMA3.View;
+﻿using PS_TEMA3.Model;
+using PS_TEMA3.View;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,8 +21,10 @@ namespace PS_TEMA3
         public MainWindow()
         {
             InitializeComponent();
-
-            mainFrame.Content = new OrganizatorGUI();
+            Subject subject = new Subject();
+            mainFrame.Content = new HomeGUI(subject);
+            
+            
         }
     }
 }

@@ -15,13 +15,13 @@ namespace PS_TEMA3.Controller
     {
         private readonly LoginGUI _loginGUI;
         private readonly UserRepository _userRepository;
+        private readonly Subject _subject;
 
-
-        public LoginController(LoginGUI loginGUI)
+        public LoginController(LoginGUI loginGUI, Subject subject)
         {
             _loginGUI = loginGUI;
             _userRepository = new UserRepository();
-
+            _subject = subject;
             InitializeEvents();
         }
 
@@ -49,13 +49,16 @@ namespace PS_TEMA3.Controller
             switch (user.UserType)
             {
                 case UserType.ADMINISTRATOR:
-                    ShowPage(new AdminGUI());
+                    AdminGUI adminGUI = new AdminGUI();
+                    adminGUI.Show();
                     break;
                 case UserType.PARTICIPANT:
-                    ShowPage(new UtilizatorGUI());
+                    UtilizatorGUI utilizatorGUI = new UtilizatorGUI();
+                    utilizatorGUI.Show();
                     break;
                 case UserType.ORGANIZER:
-                    ShowPage(new OrganizatorGUI());
+                    OrganizatorGUI organizatorGUI = new OrganizatorGUI(_subject);
+                    organizatorGUI.Show();
                     break;
                 default:
                     _loginGUI.ShowError("Invalid user type!");
@@ -90,7 +93,8 @@ namespace PS_TEMA3.Controller
         }        
         private void Back(object sender, RoutedEventArgs e)
         {
-            ShowPage(new HomeGUI());
+            //ShowPage(new HomeGUI());
+            this._loginGUI.Close();
         }
         private void ShowPage(Page page)
         {

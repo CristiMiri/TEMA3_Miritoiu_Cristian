@@ -74,37 +74,44 @@ namespace PS_TEMA3.View
         public void ShowParticipantsByConferenceChart()
         {           
             ShowCartesianChart();
+            chartController = new ChartController(this);
             chartController.SetupParticipantsByConferenceChart();
         }
         public void ShowParticipantsBySectionChart()
         {
             
             ShowCartesianChart();
+            chartController = new ChartController(this);
             chartController.SetupParticipantsBySectionChart();
         }
         public void ShowPresentationsByAuthorChart()
         {
            
             ShowCartesianChart();
+            chartController = new ChartController(this);
             chartController.SetupPresentationsByAuthorChart();
         }
         public void ShowPresentationsPerDayChart()
         {
             
             ShowCartesianChart();
+            chartController = new ChartController(this);
             chartController.SetupPresentationsPerDayChart();
         }
         public void ShowRingChart()
         {
             
             ShowPieChart();
+            chartController = new ChartController(this);
             chartController.SetupRingChart();
         }
         public void ShowLineChartDialog()
         {
            
             ShowLineChart();
+            chartController = new ChartController(this);
             chartController.SetupLineChart();
+
         }
 
 

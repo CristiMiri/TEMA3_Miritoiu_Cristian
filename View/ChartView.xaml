@@ -21,13 +21,9 @@
             </lvc:CartesianChart>
 
             <!-- Pie Chart (Ring Chart) -->
-            <lvc:PieChart x:Name="PieChart" Margin="10" Visibility="Hidden">
-                <lvc:PieChart.Series>
-                    <lvc:PieSeries Title="Participants" Values="{Binding Participants}" DataLabels="True"/>
-                </lvc:PieChart.Series>
-            </lvc:PieChart>
-
-            <!-- Line Chart -->
+        <lvc:PieChart x:Name="PieChart" Margin="10" Visibility="Hidden"/>
+        
+        <!-- Line Chart -->
             <lvc:CartesianChart x:Name="LineChart" Margin="10" Visibility="Hidden">
                 <lvc:CartesianChart.AxisX>
                     <lvc:Axis Title="Dates"/>

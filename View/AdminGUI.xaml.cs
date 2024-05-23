@@ -1,4 +1,5 @@
 ﻿using PS_TEMA3.Controller;
+using PS_TEMA3.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,12 +20,13 @@ namespace PS_TEMA3.View
     /// <summary>
     /// Interaction logic for AdminGUI.xaml
     /// </summary>
-    public partial class AdminGUI : Page
+    public partial class AdminGUI : Window
     {
         public AdminGUI()
         {
             InitializeComponent();
-            AdminController adminController = new AdminController(this);
+            var subject = new Subject();
+            AdminController adminController = new AdminController(this,subject);
         }
 
         // Getter for the ID TextBox
